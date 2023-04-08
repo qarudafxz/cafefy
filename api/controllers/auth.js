@@ -45,13 +45,11 @@ export const login = async (req, res) => {
 				.json({ message: "Username or password incorrect" });
 
 		const token = jwt.sign({ userID: user._id }, "secret");
-		res
-			.status(200)
-			.json({
-				token,
-				userID: user._id,
-				message: "User logged in successfully",
-			});
+		res.status(200).json({
+			token,
+			userID: user._id,
+			message: "User logged in successfully",
+		});
 		console.log("User successfully login");
 	} catch (err) {
 		return res.status(401).json({ err, message: "Something went wrong" });

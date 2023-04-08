@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { userRouter } from "./routes/auth.js";
+import { authRouter } from "./routes/auth.js";
+import { userRouter } from "./routes/users.js";
 
 dotenv.config();
 
@@ -18,7 +19,8 @@ app.use(
 );
 
 //routers
-app.use("/auth", userRouter);
+app.use("/auth", authRouter);
+app.use("/users", userRouter);
 
 mongoose
 	.connect(MONGO_DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
