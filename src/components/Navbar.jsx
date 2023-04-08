@@ -4,7 +4,7 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 const Navbar = () => {
   return (
     <nav>
-      <RxHamburgerMenu />
+      <RxHamburgerMenu className=""/>
     </nav>
   )
 }

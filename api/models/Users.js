@@ -10,7 +10,11 @@ const UserSchema = new mongoose.Schema(
 		password: { type: String, required: true },
 		rates: [
 			{
-				cafeId: { type: mongoose.Types.ObjectId, refs: "cafes" },
+				cafeId: {
+					type: mongoose.Types.ObjectId,
+					refs: "cafes",
+					required: true,
+				},
 				rate: { type: Number },
 				comment: { type: String, max_length: 125 },
 				date: { type: Date, default: Date.now },

@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { authRouter } from "./routes/auth.js";
 import { userRouter } from "./routes/users.js";
+import { cafeRouter } from "./routes/cafe.js";
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(
 //routers
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
+app.use("/cafes", cafeRouter);
 
 mongoose
 	.connect(MONGO_DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
