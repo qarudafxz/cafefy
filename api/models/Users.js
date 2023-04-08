@@ -8,13 +8,15 @@ const UserSchema = new mongoose.Schema(
 		lastName: { type: String, required: true },
 		email: { type: String, required: true, unique: true },
 		password: { type: String, required: true },
+		profilePic: { type: String, required: false },
 		rates: [
 			{
 				cafeId: {
 					type: mongoose.Types.ObjectId,
 					refs: "cafes",
-					required: true,
 				},
+				cafeName: { type: String },
+				cafeImage: { type: String },
 				rate: { type: Number },
 				comment: { type: String, max_length: 125 },
 				date: { type: Date, default: Date.now },
