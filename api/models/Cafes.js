@@ -4,6 +4,7 @@ const collectionName = "cafes";
 
 const CafeSchema = new mongoose.Schema({
 	name: { type: String, required: true },
+	desc: { type: String, required: true },
 	address: { type: String, required: true },
 	image: { type: String, required: true },
 	totalRatings: { type: Number, default: 0 },

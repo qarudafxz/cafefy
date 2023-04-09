@@ -1,13 +1,14 @@
 import { CafeModel } from "../models/Cafes.js";
 
 export const createCafe = async (req, res) => {
-	const { name, address, image } = req.body;
+	const { name, desc, address, image } = req.body;
 	const cafe = await CafeModel.findOne({ name });
 	if (cafe) res.status(404).json({ message: "Cafe already exists" });
 
 	try {
 		const newCafe = new CafeModel({
 			name,
+			desc,
 			address,
 			image,
 		});
