@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema(
 		email: { type: String, required: true, unique: true },
 		password: { type: String, required: true },
 		profilePic: { type: String, required: false },
+		bio: { type: String, required: false },
 		rates: [
 			{
 				cafeId: {
@@ -22,6 +23,7 @@ const UserSchema = new mongoose.Schema(
 				date: { type: Date, default: Date.now },
 			},
 		],
+		numberOfRatings: { type: Number, default: 0 },
 	},
 	{ timestamps: true }
 );

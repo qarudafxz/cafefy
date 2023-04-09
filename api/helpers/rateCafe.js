@@ -39,6 +39,7 @@ export const rateCafe = async (req, res) => {
 			comment,
 			date: new Date(),
 		}); // add the new rate and comment to the user's rates array
+		user.numberOfRatings += 1; // increment the number of ratings for the user
 		await user.save(); // save the user document to the database
 
 		cafe.ratings.push({
