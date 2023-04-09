@@ -5,10 +5,8 @@ export const getTopCafe = async (req, res) => {
 	const topCafes = await CafeModel.find({}, null, { timeout: 50000 })
 		//then we have to sort the data by the totalRatings
 		.then((cafes) => {
-			//in descending order
-			cafes.sort((a, b) => b.totalRatings - a.totalRatings);
-			//then grab the first 5 cafes
-			return cafes.slice(0, 5);
+			//in descending order and get only the top 5 cafes
+			return cafes.sort((a, b) => b.totalRatings - a.totalRatings).slice(0, 5);
 		})
 		.catch((err) => {
 			console.error(err);

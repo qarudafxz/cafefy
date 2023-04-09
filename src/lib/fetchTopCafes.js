@@ -1,8 +1,8 @@
-// import { buildUrl } from "../utils/buildUrl.js";
+import { buildUrl } from "../utils/buildUrl.js";
 
 export const fetchTopCafes = async () => {
 	try {
-		const res = await fetch("http://localhost:3000/cafes/top-cafe", {
+		const res = await fetch(buildUrl("/cafes/top-cafe"), {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

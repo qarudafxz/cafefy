@@ -4,7 +4,6 @@ const Navbar = () => {
   return (
     <nav>
       <RxHamburgerMenu className=""/>
-      
     </nav>
   )
 }
