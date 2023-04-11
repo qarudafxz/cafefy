@@ -7,9 +7,9 @@ const CafeSchema = new mongoose.Schema({
 	desc: { type: String, required: true },
 	address: { type: String, required: true },
 	image: { type: String, required: true },
-	totalRatings: { type: Number, default: 0 },
+	averageRate: { type: Number, default: 0 },
 	numberOfRaters: { type: Number, default: 0 },
-	ratings: [
+	raters: [
 		{
 			userId: {
 				type: mongoose.Types.ObjectId,

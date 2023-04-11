@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 
 import { UserModel } from "../models/Users.js";
 
+//create user
 export const signup = async (req, res) => {
 	const { firstName, lastName, email, password, rates } = req.body;
 
@@ -18,6 +19,7 @@ export const signup = async (req, res) => {
 			lastName,
 			email,
 			password: hashedPassword,
+			bio: `👋 Nice to meet you here on Cafefy! I'm ${firstName} ${lastName}`,
 			rates,
 		});
 
@@ -28,6 +30,7 @@ export const signup = async (req, res) => {
 	}
 };
 
+//login user
 export const login = async (req, res) => {
 	const { email, password } = req.body;
 

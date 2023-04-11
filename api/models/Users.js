@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema(
 		email: { type: String, required: true, unique: true },
 		password: { type: String, required: true },
 		profilePic: { type: String, required: false, default: "" },
+		bgCover: { type: String, required: false, default: "" },
 		bio: { type: String, required: false, default: "" },
 		rates: [
 			{
@@ -24,6 +25,7 @@ const UserSchema = new mongoose.Schema(
 			},
 		],
 		numberOfRatings: { type: Number, default: 0 },
+		numberOfReviews: { type: Number, default: 0 },
 	},
 	{ timestamps: true }
 );
