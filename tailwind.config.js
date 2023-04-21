@@ -9,6 +9,8 @@ export default {
 				cream: "#F8DEC6",
 			},
 			textColor: {
+				primary: "#131313",
+				secondary: "#8B2801",
 				cream: "#F8DEC6",
 			},
 			backgroundImage: {
@@ -18,7 +20,7 @@ export default {
 				primary: ["Poppins", "sans-serif"],
 			},
 			margin: {
-				xxxsm: "35px",
+				xxxsm: "29px",
 				xxsm: "45px",
 				xsm: "55px",
 				sm: "65px",
