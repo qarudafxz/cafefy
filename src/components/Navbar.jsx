@@ -40,7 +40,7 @@ const Navbar = () => {
                 <form>
                   <input type="text" placeholder='Search cafes' className="w-full py-2 pl-6 rounded-3xl focus:outline-none bg-transparent border border-white font-primary text-white"/>
                 </form>
-                <div className="flex flex-row gap-6 place-content-center cursor-pointer">
+                <div className="flex flex-row gap-4 place-content-center cursor-pointer">
                   <Link to="/auth/login"><button className="border border-[#8b2801] text-[#8b2801] text-lg font-main font-semibold px-4 py-2 rounded-3xl">Login</button></Link>
                   <Link to="/auth/register"><button className="bg-[#8b2801] text-primary text-lg font-main font-semibold px-4 py-2 rounded-3xl">Register</button></Link>
                 </div>

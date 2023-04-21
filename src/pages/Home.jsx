@@ -14,7 +14,7 @@ const checkIfUserLoggedIn = () => {
   if(userID) {
     window.location.href = '/cafes';
   } else {
-    window.location.href = 'auth/login';
+    window.location.href = '/login';
   }
 }
 

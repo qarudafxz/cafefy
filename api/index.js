@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import morgan from "morgan";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { authRouter } from "./routes/auth.js";
@@ -14,16 +15,24 @@ const app = express();
 //middlewares
 app.use(express.json());
 app.use(
+	express.urlencoded({
+		extended: true,
+	})
+);
+app.use(
 	cors({
 		origin: "*",
+		method: ["GET", "POST"],
 		credentials: true,
 	})
 );
+app.use(morgan("tiny"));
+app.disable("x-powered-by");
 
-//routers
-app.use("/auth", authRouter);
-app.use("/users", userRouter);
-app.use("/cafes", cafeRouter);
+//api routes
+app.use("/api/auth", authRouter);
+app.use("/api/users", userRouter);
+app.use("/api/cafes", cafeRouter);
 
 mongoose
 	.connect(MONGO_DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })

@@ -25,10 +25,14 @@ export const signup = async (req, res) => {
 
 		await newUser.save();
 		res.status(200).json({ newUser, message: "User created successfully" });
+		res.redirect("/login");
 	} catch (err) {
 		return res.status(401).json({ message: "Something went wrong" });
 	}
 };
+
+//authenticate
+export const authenticate = async (req, res) => {};
 
 //login user
 export const login = async (req, res) => {
@@ -42,14 +46,21 @@ export const login = async (req, res) => {
 		if (!user) return res.status(401).json({ message: "User doesn't exist" });
 
 		const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
 		if (!isPasswordCorrect)
 			return res
 				.status(401)
 				.json({ message: "Username or password incorrect" });
 
-		const token = jwt.sign({ userID: user._id }, "secret");
+		const token = jwt.sign(
+			{ userID: user._id, username: user.username },
+			"secret",
+			{ expiresIn: "5m" }
+		);
+
 		res.status(200).json({
 			token,
+			username: user.username,
 			userID: user._id,
 			message: "User logged in successfully",
 		});
@@ -58,3 +69,6 @@ export const login = async (req, res) => {
 		return res.status(401).json({ err, message: "Something went wrong" });
 	}
 };
+
+//generate On time password
+export const generateOTP = async (req, res) => {};
