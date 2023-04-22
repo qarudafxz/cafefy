@@ -2,7 +2,7 @@ import { CafeModel } from "../models/Cafes.js";
 
 export const getTopCafe = async (req, res) => {
 	//we have to traverse first all the data inside the database
-	const topCafes = await CafeModel.find({}, null, { timeout: 50000 })
+	const topCafes = await CafeModel.find({}, null, { timeout: 80000 })
 		//then we have to sort the data by the totalRatings
 		.then((cafes) => {
 			//in descending order and get only the top 5 cafes

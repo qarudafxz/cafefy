@@ -37,7 +37,6 @@ export const authenticate = async (req, res) => {};
 //login user
 export const login = async (req, res) => {
 	const { email, password } = req.body;
-
 	try {
 		if (!email || !password)
 			return res.status(401).json({ message: "Please fill all the fields" });
@@ -60,7 +59,7 @@ export const login = async (req, res) => {
 
 		res.status(200).json({
 			token,
-			username: user.username,
+			username: user.firstName + " " + user.lastName,
 			userID: user._id,
 			message: "User logged in successfully",
 		});

@@ -7,11 +7,13 @@ export default {
 				primary: "#131313",
 				secondary: "#8B2801",
 				cream: "#F8DEC6",
+				brown: "#8b2801",
 			},
 			textColor: {
 				primary: "#131313",
 				secondary: "#8B2801",
 				cream: "#F8DEC6",
+				brown: "#8b2801",
 			},
 			backgroundImage: {
 				bg: "url('/src/assets/images/bg.svg')",

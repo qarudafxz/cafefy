@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
 import { IoEyeSharp } from 'react-icons/io5';
@@ -12,9 +12,14 @@ const Login = () => {
   const [ password, setPassword ] = useState("");
   const [ loginMessage, setLoginMessage ] = useState("");
 
-  const handleLogin = async(e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
+  
+    if (!email || !password) {
+      setLoginMessage("Please fill all the fields");
+      return;
+    }
+  
     try {
       const res = await fetch(buildUrl('/auth/login'), {
         method: 'POST',
@@ -26,19 +31,36 @@ const Login = () => {
           password
         })
       });
-
-      await res.json();
-
-      if(!res.message) 
-        setLoginMessage(res.message);
-    } catch(e) {
-      console.log(e);
+  
+      const data = await res.json();
+  
+      if (data.message === "User logged in successfully") {
+        const token_expiration = new Date().getTime() + 5 * 60 * 1000; // 5 minutes
+        sessionStorage.setItem('token', data.token);
+        sessionStorage.setItem('token_expiration', token_expiration);
+        sessionStorage.setItem('user', JSON.stringify(data.username));
+        sessionStorage.setItem('userID', data.userID);
+  
+        window.location.href = '/home';
+      } else {
+        setLoginMessage(data.message);
+      }
+    } catch (e) {
+      throw new Error(data.message)
     }
-  }
+  };
+  
+
   const togglePasswordVisibility = (e) => {
     e.preventDefault();
     setIsVisible(!isVisible);
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoginMessage("");
+    },2000);
+  }, [loginMessage])
 
   return (
     <div>
@@ -54,6 +76,11 @@ const Login = () => {
             className="focus:outline-none font-body bg-[#686868] rounded-md py-2 pl-4 pr-12 text-white w-full"
             onChange={(e) => setEmail(e.target.value)}  
           ></input>
+          {
+            loginMessage && (
+              <p className="text-red-500 text-xs">{loginMessage}</p>
+            )
+          }
           <div className="relative font-primary">
             <input
               type={isVisible ? "text" : "password"}
@@ -68,7 +95,7 @@ const Login = () => {
                 <IoEyeSharp className="absolute right-3 top-2 text-xl cursor-pointer text-[#b9b9b9]" />
               )}
             </button>
-            <button type="submit" className="w-full bg-[#8b2801] py-2 px-4 rounded-lg mt-10 font-extrabold text-white">Login</button>
+            <button type="submit" className="w-full bg-brown py-2 px-4 rounded-lg mt-10 font-extrabold text-white">Login</button>
             <p className="font-primary text-xs text-white mt-4 text-center">Don't have an account <span className="font-primary italic underline text-cream"><Link to="/auth/register">Create one</Link></span></p>
           </div>
         </form>

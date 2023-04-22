@@ -1,3 +1,3 @@
 export const getUserId = () => {
-	return window.localStorage.getItem("userId");
+	return sessionStorage.getItem("userID");
 };

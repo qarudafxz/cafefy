@@ -33,10 +33,12 @@ export const rateCafe = async (req, res) => {
 
 		comment ? (user.numberOfReviews += 1) : null; // increment the number of reviews for the user
 
+		console.log(cafeImg);
+		console.log(userImg);
 		user.rates.push({
+			cafeImg,
 			cafeId,
 			cafeName,
-			cafeImg,
 			rate,
 			comment,
 			date: new Date(),
@@ -45,9 +47,9 @@ export const rateCafe = async (req, res) => {
 		await user.save(); // save the user document to the database
 
 		cafe.raters.push({
+			userImg,
 			userId,
 			userName,
-			userImg,
 			rate,
 			comment,
 			date: new Date(),

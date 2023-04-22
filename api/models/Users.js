@@ -8,8 +8,17 @@ const UserSchema = new mongoose.Schema(
 		lastName: { type: String, required: true },
 		email: { type: String, required: true, unique: true },
 		password: { type: String, required: true },
-		profilePic: { type: String, required: false, default: "" },
-		bgCover: { type: String, required: false, default: "" },
+		profilePic: {
+			type: String,
+			required: false,
+			default:
+				"https://static.vecteezy.com/system/resources/previews/002/412/377/original/coffee-cup-logo-coffee-shop-icon-design-free-vector.jpg",
+		},
+		bgCover: {
+			type: String,
+			required: false,
+			default: "https://wallpapercave.com/wp/wp11903179.jpg",
+		},
 		bio: { type: String, required: false, default: "" },
 		rates: [
 			{
