@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { buildUrl } from '../utils/buildUrl.js';
 import LoggedInNavbar from '../components/LoggedInNavbar';
+import Navbar from '../components/Navbar'
 import { AiFillStar } from 'react-icons/ai'; 
 import { IoLocationSharp } from 'react-icons/io5'
+import { SESSION_TOKEN } from '../private/sessionToken.js';
 
 function ViewCafe() {
   const { id: cafeID } = useParams();
   const [ cafeDeets, setCafeDeets ] = useState({});
-  const stars = [];
+  const session_token = SESSION_TOKEN;
 
   const getCafeDetails = async () => {
     try {
@@ -28,7 +30,8 @@ function ViewCafe() {
 
   return (
     <div className="font-primary">
-      <LoggedInNavbar />
+     { !session_token ? <Navbar /> : <LoggedInNavbar /> }
+
       <div className="xxxsm: mx-xxxsm flex flex-col gap-2">
         <img src={cafeDeets.image} className="rounded-lg"/>
         <h1 className="xxxsm: text-white text-5xl font-bold my-4">{cafeDeets.name}</h1>
