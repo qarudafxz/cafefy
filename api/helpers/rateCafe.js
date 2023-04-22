@@ -21,8 +21,6 @@ export const rateCafe = async (req, res) => {
 		//and checks if the ids of the cafe is same with the currently selected cafe
 		const userRate = user.rates.find((rate) => rate.cafeId == cafeId);
 
-		const cafeName = cafe.name;
-		const cafeImg = cafe.image;
 		const userName = user.firstName + " " + user.lastName;
 		const userImg = user.profilePic;
 
@@ -33,12 +31,10 @@ export const rateCafe = async (req, res) => {
 
 		comment ? (user.numberOfReviews += 1) : null; // increment the number of reviews for the user
 
-		console.log(cafeImg);
-		console.log(userImg);
 		user.rates.push({
-			cafeImg,
-			cafeId,
-			cafeName,
+			cafeId: cafe._id,
+			cafeName: cafe.name,
+			cafeLogo: cafe.logo,
 			rate,
 			comment,
 			date: new Date(),
@@ -47,9 +43,9 @@ export const rateCafe = async (req, res) => {
 		await user.save(); // save the user document to the database
 
 		cafe.raters.push({
-			userImg,
 			userId,
 			userName,
+			userImage: user.profilePic,
 			rate,
 			comment,
 			date: new Date(),

@@ -67,11 +67,11 @@ function Profile() {
                       return (
                         <div key={id} className="flex">
                           <Link to={{
-                            pathname: '/cafe/:id',
+                            pathname: `/cafe/${rate.cafeId}`,
                             state: { cafeID: rate.cafeId }
                           }}
                           className="xxxsm: w-11/12 h-auto rounded-l-lg">
-                            <img src={rate.image} alt={rate.cafeName} />
+                            <img src={rate.cafeLogo} alt={rate.cafeName} />
                           </Link>
                           <div className="xxxsm: bg-white w-8/12 rounded-r-lg flex flex-col justify-between p-4">
                             <div className="flex flex-row justify-between">
@@ -83,7 +83,7 @@ function Profile() {
                             </div>
                             <hr className="w-full"></hr>
                             <p className="font-semibold text-xs text-ellipsis whitespace-nowrap overflow-hidden">{rate.comment}</p>
-                            <p className="text-xs text-right">{rate.date.toLocaleString('en-US', { timeZone: 'UTC'}).replace(',', '')}</p>
+                            <p className="text-xs text-right">{new Date(rate.date).toLocaleDateString('en-US')}</p>
                           </div>
                         </div>
                       )

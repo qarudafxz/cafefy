@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
+import ViewCafe from './pages/ViewCafe';
 
 const App = () => {
   return (
@@ -31,6 +32,10 @@ const App = () => {
           <Route 
             path="/profile/:id"
             element={<Profile />}
+          />
+          <Route
+            path="/cafe/:id"
+            element={<ViewCafe />}
           />
         </Routes>
       </Router>

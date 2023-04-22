@@ -33,7 +33,7 @@ function TopCafes() {
          sortedCafes.map((cafe) => {
             return (
               <div className="flex flex-col shadow-3xl" key={cafe._id}>
-                <Link to={`/cafe/${cafe._id}`}><img src={cafe.image} className="rounded-t-md w-full"/></Link>  
+                <Link to={`/cafe/${cafe._id}`}><img src={cafe.logo} className="rounded-t-md w-full"/></Link>  
                 <div className="bg-secondary p-4 rounded-b-md">
                   <div className='flex flex-row justify-between'>
                     <h1 className="xxxsm: relative z-10 text-cream font-primary text-xl font-semibold mb-4">{cafe.name}</h1> 

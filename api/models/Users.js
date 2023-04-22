@@ -27,7 +27,7 @@ const UserSchema = new mongoose.Schema(
 					refs: "cafes",
 				},
 				cafeName: { type: String },
-				cafeImage: { type: String },
+				cafeLogo: { type: String, default: "" },
 				rate: { type: Number },
 				comment: { type: String, max_length: 125 },
 				date: { type: Date, default: Date.now },
