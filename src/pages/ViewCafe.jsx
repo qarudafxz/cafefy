@@ -74,7 +74,7 @@ function ViewCafe() {
                   return (
                     <div key={rate._id} className="xxxsm: flex flex-col gap-4 bg-white rounded-md p-4">
                       <div className="flex flex-row gap-4">
-                        <Link to={`/users/${rate.userId}`} className="xxxsm: w-3/12 rounded-full"><img src={rate.userImage}/></Link>
+                        <Link to={`/users/${rate.userId}`} className="xxxsm: w-3/12"><img src={rate.userImage} className="rounded-full"/></Link>
                         <div className="flex flex-col">
                           <h1 className="font-bold text-primary">{rate.userName}</h1>
                           <div className="flex flex-row gap-1 items-center">

@@ -70,12 +70,17 @@ function Profile() {
                             pathname: `/cafe/${rate.cafeName}/${rate.cafeId}`,
                             state: { cafeID: rate.cafeId }
                           }}
-                          className="xxxsm: w-11/12 h-auto rounded-l-lg">
-                            <img src={rate.cafeLogo} alt={rate.cafeName} />
+                          >
+                            <img src={rate.cafeLogo} alt={rate.cafeName} className="xxxsm: w-auto h-auto rounded-l-md"/>
                           </Link>
-                          <div className="xxxsm: bg-white w-8/12 rounded-r-lg flex flex-col justify-between p-4">
+                          <div className="xxxsm: bg-white w-8/12 rounded-r-lg flex flex-col justify-between p-4 hover:bg-[#dadada] duration-200">
                             <div className="flex flex-row justify-between">
-                              <h1 className="font-semibold text-brown">{rate.cafeName}</h1>
+                              <Link to={{
+                                 pathname: `/cafe/${rate.cafeName}/${rate.cafeId}`,
+                                 state: { cafeID: rate.cafeId }
+                                }} className="xxxsm:font-semibold text-brown hover:text-cream duration-200">
+                                <h1>{rate.cafeName}</h1>
+                              </Link>
                               <div className="xxxsm: flex flex-row gap-2 items-center">
                                 <AiFillStar className="text-yellow-400" size={14}/>
                                 <span className="text-primary text-xs font-semibold">{rate.rate}</span>
