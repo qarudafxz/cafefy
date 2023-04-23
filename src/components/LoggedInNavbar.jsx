@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { SiCoffeescript } from 'react-icons/si';
-import { AiTwotoneHome, AiFillHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 import { HiInformationCircle } from 'react-icons/hi';
 import { MdPermContactCalendar } from 'react-icons/md';
 import { MdClose } from 'react-icons/md';
@@ -76,12 +76,8 @@ const LoggedInNavbar = () => {
                 </form>
                 <div className="flex flex-col gap-2 cursor-pointer text-white text-sm">
                   <div className="flex flex-row items-center">
-                    <AiTwotoneHome className="text-xl mr-2" />
-                    <Link to="/home">Home</Link>
-                  </div>
-                  <div className="flex flex-row items-center">
                     <SiCoffeescript className="text-xl mr-2" />
-                    <Link to="/cafes">Cafes</Link>
+                    <Link to="/home">Cafes</Link>
                   </div>
                   <div className="flex flex-row items-center">
                     <HiInformationCircle className="text-xl mr-2" />
@@ -95,7 +91,7 @@ const LoggedInNavbar = () => {
                     <MdPermContactCalendar className="text-xl mr-2" />
                     <Link to="/cafes">Contact</Link>
                   </div>
-                <button className="bg-brown rounded-3xl py-1 font-bold text-lg" onClick={toggleLogout}>Logout</button>
+                <button className="bg-brown rounded-3xl py-1 font-bold text-lg text-ellipsis" onClick={toggleLogout}>Logout</button>
                 </div>
               </div>
             </motion.div>

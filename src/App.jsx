@@ -7,6 +7,8 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import ViewCafe from './pages/ViewCafe';
+import Rate from './pages/Rate';
+import ViewUserProfile from './pages/ViewUserProfile';
 
 const App = () => {
   return (
@@ -34,8 +36,16 @@ const App = () => {
             element={<Profile />}
           />
           <Route
-            path="/cafe/:id"
+            path="/cafe/:name/:id"
             element={<ViewCafe />}
+          />
+          <Route
+            path="/review/:id"
+            element={<Rate/>}
+          />
+          <Route 
+            path="/users/:id"
+            element={<ViewUserProfile />}  
           />
         </Routes>
       </Router>

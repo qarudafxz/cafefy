@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
-const StarRating = ({ rating, setRating, disabled = false, ...rest }) => {
-  const [hover, setHover] = useState(null);
+const StarRating = ({ rating, setRating, disabled = false}) => {
+  const [ hover, setHover ] = useState(null);
 
   return (
     <div className="flex space-x-2 items-center">
@@ -13,7 +13,7 @@ const StarRating = ({ rating, setRating, disabled = false, ...rest }) => {
           if (hover) {
             color =
               ratingValue <= (hover || rating)
-                ? "text-yellow-400"
+                ? "text-brown"
                 : "text-gray-200";
           } else {
             color =
@@ -40,7 +40,7 @@ const StarRating = ({ rating, setRating, disabled = false, ...rest }) => {
             <FaStar
               className={
                 `${
-                  !disabled && "active:text-yellow-300"
+                  !disabled && "active:text-brown"
                 }  cursor-pointer transition ease-in-out ` + color
               }
               size="2.5em"
@@ -50,6 +50,7 @@ const StarRating = ({ rating, setRating, disabled = false, ...rest }) => {
           </label>
         );
       })}
+
     </div>
   );
 };

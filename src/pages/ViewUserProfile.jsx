@@ -3,13 +3,18 @@ import { Link, useParams } from 'react-router-dom'
 import { buildUrl } from '../utils/buildUrl.js';
 import { AiFillEdit, AiFillProfile } from 'react-icons/ai';
 import LoggedInNavbar from '../components/LoggedInNavbar'
+import Navbar from '../components/Navbar.jsx';
 import CardSkeletonProfile from '../components/CardSkeletonProfile';
 import { AiFillStar } from 'react-icons/ai';
+import { SESSION_TOKEN } from '../private/sessionToken.js';
+import { getUserID } from '../private/getUserID.js';
 
 function Profile() {
   let { id: userID } = useParams();
   const [ isLoading, setIsLoading ] = useState(false);
   const [ userDeets, setUserDeets ] = useState({});
+  const session_token = SESSION_TOKEN;
+  const session_user_id = getUserID();
 
   const getUserDetails = async () => {
     try {
@@ -29,17 +34,22 @@ function Profile() {
 
   return (
     <div>
-      <LoggedInNavbar />
+      { session_token ? <LoggedInNavbar /> : <Navbar /> } 
       { isLoading ? ( <CardSkeletonProfile /> ) : ( 
         <div className="font-primary">
           <img src={userDeets.bgCover} className="xxxsm:absolute -z-10"/>
           <img src={userDeets.profilePic} className="xxxsm:relative w-5/12 rounded-full m-auto top-24 border-4 border-[#131313]"/>
           <div className="xxxsm: flex flex-col">
-            <div className="xxxsm: flex flex-row gap-4 mt-32 place-content-center place-items-center">
-              <button className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full"><AiFillEdit />Edit Profile</button>
-              <button className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full"><AiFillProfile />Share Profile</button>
-            </div>
-            <div className="font-primary xxxsm: flex flex-col gap-6 mt-12 m-xxxsm">
+            {/* Edit button */}
+            {
+              session_user_id === userID && ( 
+              <div className="xxxsm: flex flex-row gap-4 mt-32 place-content-center place-items-center">
+                <button className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full"><AiFillEdit />Edit Profile</button>
+                <button className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full"><AiFillProfile />Share Profile</button>
+              </div>
+              )
+            }
+            <div className={`font-primary xxxsm: flex flex-col gap-6 ${session_user_id === userID ? "mt-12" : "mt-32"} m-xxxsm`}>
               <h1 className="xxxsm: text-white text-3xl font-bold text-center">{userDeets.firstName + " " + userDeets.lastName}</h1>
               <p className="text-sm leading-4 text-[#919191] text-center">{userDeets.bio}</p>
             </div>
