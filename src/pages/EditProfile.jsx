@@ -104,7 +104,7 @@ function EditProfile() {
               </div>
             }
             <div className="flex flex-row gap-8 items-center">
-              <img src={profilePic} className="xxxsm: w-4/12 h-full rounded-full"/>
+              <img src={user.profilePic == defaultPic ? defaultPic : user.profilePic} className="xxxsm: w-4/12 h-full rounded-full"/>
               <div className="flex flex-col gap-1">
                 <button className="disabled flex gap-2 items-center xxxsm:text-xs text-white font-bold bg-[#B57F6A] py-2 px-4 rounded-md"><BiUpload size={24}/>Upload own photo</button>
                 <button className="disabled flex gap-2 items-center xxxsm:text-xs text-white font-bold border border-white py-2 px-4 rounded-md" onClick={() => setProfile(true)}><TbLink size={24}/>Upload using link</button>
