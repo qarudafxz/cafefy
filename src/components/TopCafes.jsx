@@ -7,6 +7,8 @@ import { MdLocationOn } from 'react-icons/md';
 import 'react-loading-skeleton/dist/skeleton.css'
 import CardSkeleton from '../components/CardSkeleton';
 
+import Cup from '../assets/cup_bg.png'
+
 function TopCafes() {
   const [ isLoading, setIsLoading ] = useState(false); 
   const [topCafes, setTopCafes] = useState([]);
@@ -25,15 +27,14 @@ function TopCafes() {
   },[])
 
   return (
-    <div className="xxxsm:mx-xxxsm mt-16 flex flex-col gap-4">
-      <h1 className="xxxsm: relative z-10 text-white font-primary text-xl font-semibold">🔥 Top 5 Rated Cafes</h1>
+    <div className="xxxsm:mx-xxxsm mt-16 flex flex-col gap-4 sm:mt-28 xl:mt-72">
+      <h1 className="xxxsm: relative z-10 text-white font-primary text-xl font-semibold sm:text-2xl md:text-4xl font-bold">🔥 Top 5 Rated Cafes</h1>
       <div className="xxxsm: flex flex-col gap-2">
-        
       { isLoading ? <CardSkeleton/> : (
          sortedCafes.map((cafe) => {
             return (
-              <div className="flex flex-col shadow-3xl" key={cafe._id}>
-                <Link to={`/cafe/${cafe.name}/${cafe._id}`}><img src={cafe.logo} className="rounded-t-md w-full"/></Link>  
+              <div className="flex flex-col shadow-3xl sm:flex-row xxl:w-5/6" key={cafe._id}>
+                <Link to={`/cafe/${cafe.name}/${cafe._id}`}><img src={cafe.logo} className="rounded-t-md w-full xxl:w-4/12 h-58"/></Link>  
                 <div className="bg-secondary p-4 rounded-b-md">
                   <div className='flex flex-row justify-between'>
                     <h1 className="xxxsm: relative z-10 text-cream font-primary text-xl font-semibold mb-4">{cafe.name}</h1> 

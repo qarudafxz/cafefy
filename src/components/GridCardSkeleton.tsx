@@ -1,10 +1,10 @@
 import React from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
-function CardSkeleton() {
+function GridCardSkeleton() {
   const cards : JSX.Element[] = [];
 
-  for(let i = 0; i < 5; i++) {
+  for(let i = 0; i < 6; i++) {
     cards.push(
       <div className="card" key={i}>
         <Skeleton height={200} />
@@ -17,7 +17,7 @@ function CardSkeleton() {
     )
   }
   return (
-    <div className="xxxsm: mx-xxxsm mt-46">
+    <div className="xxxsm: mx-xxxsm mt-46 sm:grid grid-cols-3 gap-8 mt-48 xl:mx-56">
       <SkeletonTheme baseColor="#202020" highlightColor="#444">
         { cards }
       </SkeletonTheme>
@@ -25,4 +25,4 @@ function CardSkeleton() {
   )
 }
 
-export default CardSkeleton
+export default GridCardSkeleton

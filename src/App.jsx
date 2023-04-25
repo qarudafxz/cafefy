@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import ViewCafe from './pages/ViewCafe';
 import Rate from './pages/Rate';
 import ViewUserProfile from './pages/ViewUserProfile';
+import EditProfile from './pages/EditProfile';
 
 const App = () => {
   return (
@@ -28,7 +29,7 @@ const App = () => {
             element={<Register />} 
           />
           <Route 
-            path="/home"
+            path="/cafes"
             element={<Dashboard />}
           />
           <Route 
@@ -46,6 +47,10 @@ const App = () => {
           <Route 
             path="/users/:id"
             element={<ViewUserProfile />}  
+          />
+          <Route 
+            path="/profile/edit"
+            element={<EditProfile />}  
           />
         </Routes>
       </Router>

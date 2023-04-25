@@ -22,12 +22,11 @@ export const rateCafe = async (req, res) => {
 		const userRate = user.rates.find((rate) => rate.cafeId == cafeId);
 
 		const userName = user.firstName + " " + user.lastName;
-		const userImg = user.profilePic;
 
 		if (userRate)
 			return res
 				.status(404)
-				.json({ message: "You have already rated this cafe" }); // if the user has already rated this cafe, return an error response
+				.json({ message: "You have already rated this cafe", disabled: true }); // if the user has already rated this cafe, return an error response
 
 		comment ? (user.numberOfReviews += 1) : null; // increment the number of reviews for the user
 

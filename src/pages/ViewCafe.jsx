@@ -8,12 +8,15 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { IoLocationSharp } from 'react-icons/io5'
 import { SESSION_TOKEN } from '../private/sessionToken.js';
 import CardSkeleton from '../components/CardSkeleton';
+import { getUserId } from '../helpers/getUserId.js';
 
 function ViewCafe() {
   const [ isLoading, setIsLoading ] = useState(false);
   const { id: cafeID } = useParams();
   const [ cafeDeets, setCafeDeets ] = useState({});
   const session_token = SESSION_TOKEN;
+  const userID = getUserId();
+  const [ disableBtn, setDisableBtn ] = useState(false);
 
   const getCafeDetails = async () => {
     setIsLoading(true);
@@ -22,7 +25,7 @@ function ViewCafe() {
         method: 'GET'
       })
       const details = await response.json();
-      setCafeDeets(details)
+      setCafeDeets(details);
       setIsLoading(false);
     } catch(err) {
       throw new Error(err);
@@ -33,10 +36,15 @@ function ViewCafe() {
     getCafeDetails();
   }, [])
 
+  useEffect(() => {
+    setDisableBtn(userID && cafeDeets.raters?.find(rate => rate.userId === userID));
+  }, [cafeDeets]);
+
   return (
     <div>
       { !session_token ? <Navbar /> : <LoggedInNavbar /> }
       <div className="font-primary mx-xxxsm">
+        {/* Put heart to fave */}
       {
         isLoading ? <CardSkeleton /> : ( 
         <div className="xxxsm:flex flex-col gap-2">
@@ -61,7 +69,7 @@ function ViewCafe() {
               })()
             }
             <div className="xxxsm: flex flex-col text-center text-white">
-              <h1 className="font-bold text-2xl">{cafeDeets.averageRate}</h1>
+              <h1 className="font-bold text-2xl">{cafeDeets?.averageRate?.toFixed(1)}</h1>
               <p>Average</p>
             </div>
             {/* Reviews and Ratings */}
@@ -96,20 +104,27 @@ function ViewCafe() {
                         </div>
                       </div>
                       <hr></hr>
-                      <p className="font-semibold">{rate?.comment}</p>
-                      <p className="text-xs">{new Date(rate?.date).toLocaleDateString('en-US')}</p>
+                      <p className="text-sm font-semibold">{rate?.comment}</p>
+                      <p className="text-xs from-neutral-700">{new Date(rate?.date).toLocaleDateString('en-US')}</p>
                     </div>
                   )
                 })
               }
             </div>
-            <Link 
-              to={`/review/${cafeID}`} 
-              state={{cafeID: cafeID}}
-              className="bg-brown xxxsm:font-semibold text-xl rounded-md py-2 text-white mb-4 text-center"
-            >
-              <button>Write a review</button>
-            </Link>
+            {
+              disableBtn ? <button className="disabled xxxsm:bg-[#924729] mt-4 text-white text-md font-semibold rounded-md py-2 px-4">You already wrote a review</button> : (
+                <Link 
+                  to={`/review/${cafeID}`} 
+                  state={{cafeID: cafeID}}
+                  className="xxxsm:bg-brown font-semibold text-xl rounded-md py-2 text-white mb-4 text-center"
+                >
+                  <button>
+                    Write a review
+                  </button>
+                </Link>
+              )
+            }
+
         </div>
         )
       }

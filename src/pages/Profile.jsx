@@ -36,8 +36,8 @@ function Profile() {
           <img src={userDeets.profilePic} className="xxxsm:relative w-5/12 rounded-full m-auto top-24 border-4 border-[#131313]"/>
           <div className="xxxsm: flex flex-col">
             <div className="xxxsm: flex flex-row gap-4 mt-32 place-content-center place-items-center">
-              <button className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full"><AiFillEdit />Edit Profile</button>
-              <button className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full"><AiFillProfile />Share Profile</button>
+              <Link to="/profile/edit" className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full"><AiFillEdit />Edit Profile</Link>
+              <Link to="" className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full"><AiFillProfile />Share Profile</Link>
             </div>
             <div className="font-primary xxxsm: flex flex-col gap-6 mt-12 m-xxxsm">
               <h1 className="xxxsm: text-white text-3xl font-bold text-center">{userDeets.firstName + " " + userDeets.lastName}</h1>
@@ -56,8 +56,8 @@ function Profile() {
             {
               !userDeets.rates || userDeets.rates.length === 0 ? (
                 <div className="xxxsm: flex flex-col gap-2 text-center mt-24 mx-xxxsm">
-                  <p className="text-3xl font-bold text-white">No ratings yet!</p>
-                  <button className="border-2 border-brown rounded-full py-2 text-white font-bold">Rate now</button>
+                  <p className="xxxsm: text-3xl font-bold text-white">No ratings yet!</p>
+                  <Link to="/home" className="xxxsm: border-2 border-brown rounded-full py-2 text-white font-bold cursor-pointer">Rate Now</Link>
                 </div>
               ) : (
                 <div className="xxxsm:mx-xxxsm flex flex-col gap-2 mt-24 font-primary">
@@ -71,14 +71,14 @@ function Profile() {
                             state: { cafeID: rate.cafeId }
                           }}
                           >
-                            <img src={rate.cafeLogo} alt={rate.cafeName} className="xxxsm: w-auto h-auto rounded-l-md"/>
+                            <img src={rate.cafeLogo} alt={rate.cafeName} className="xxxsm: rounded-l-md w-full"/>
                           </Link>
                           <div className="xxxsm: bg-white w-8/12 rounded-r-lg flex flex-col justify-between p-4 hover:bg-[#dadada] duration-200">
-                            <div className="flex flex-row justify-between">
+                            <div className="flex flex-row gap-2">
                               <Link to={{
                                  pathname: `/cafe/${rate.cafeName}/${rate.cafeId}`,
                                  state: { cafeID: rate.cafeId }
-                                }} className="xxxsm:font-semibold text-brown hover:text-cream duration-200">
+                                }} className="xxxsm:font-semibold text-brown text-xs hover:text-cream duration-200">
                                 <h1>{rate.cafeName}</h1>
                               </Link>
                               <div className="xxxsm: flex flex-row gap-2 items-center">
@@ -87,8 +87,8 @@ function Profile() {
                               </div>
                             </div>
                             <hr className="w-full"></hr>
-                            <p className="font-semibold text-xs text-ellipsis whitespace-nowrap overflow-hidden">{rate.comment}</p>
-                            <p className="text-xs text-right">{new Date(rate.date).toLocaleDateString('en-US')}</p>
+                            <p className="xxxsm: font-semibold text-xs text-ellipsis whitespace-nowrap overflow-hidden mt-4">{rate.comment}</p>
+                            <p className="xxxsm: text-xs text-right mt-4">{new Date(rate.date).toLocaleDateString('en-US')}</p>
                           </div>
                         </div>
                       )

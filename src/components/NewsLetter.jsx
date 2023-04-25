@@ -4,7 +4,7 @@ import pic from '../assets/newsletter.svg';
 function NewsLetter() {
   return (
     <div className="xxxsm: mx-xxxsm">
-      <h1 className="xxxsm: font-primary font-bold text-white text-left py-3 px-7 mt-7 border border-white rounded-t-lg">📰 Newsletter</h1>
+      <h1 className="xxxsm: font-primary font-bold text-white text-left py-3 px-7 mt-7 border border-white rounded-t-lg xl:text-3xl">📰 Newsletter</h1>
       <img src={pic} className="w-full"/>
       <div className="flex flex-col gap-4 p-4 bg-white rounded-b-lg shadow-md">
         <p>Get the best new coffee products in your inbox every day</p>

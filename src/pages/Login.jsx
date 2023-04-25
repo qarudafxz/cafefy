@@ -41,12 +41,12 @@ const Login = () => {
         sessionStorage.setItem('user', JSON.stringify(data.username));
         sessionStorage.setItem('userID', data.userID);
   
-        window.location.href = '/home';
+        window.location.href = '/cafes';
       } else {
         setLoginMessage(data.message);
       }
     } catch (e) {
-      throw new Error(data.message)
+      throw new Error(e)
     }
   };
   
@@ -66,14 +66,14 @@ const Login = () => {
     <div>
       <Navbar />
 
-      <div className="xxxsm:w-11/12 m-auto bg-[#232323] p-4 rounded-lg mt-14">
-        <p className="xxxsm:font-primary text-white text-xs">Welcome Back!</p>
-        <h1 className="xxxsm:font-primary text-cream text-4xl font-bold tracking-wide mb-4">Log In</h1>
-        <form className="flex flex-col gap-4 text-xs" onSubmit={handleLogin}>
+      <div className="xxxsm:w-11/12 m-auto bg-[#232323] p-4 rounded-lg mt-14 sm:w-6/12 md:w-4/12 p-6 xl:w-3/12 xxl:w-3/12">
+        <p className="xxxsm:font-primary text-white text-xs sm:text-lg xxl:mt-4">Welcome Back!</p>
+        <h1 className="xxxsm:font-primary text-cream text-4xl font-extrabold tracking-wide mb-4 sm:text-6xl">Log In</h1>
+        <form className="flex flex-col gap-4 text-xs xxl:mt-8" onSubmit={handleLogin}>
           <input 
             type="text" 
             placeholder="Enter your email" 
-            className="focus:outline-none font-body bg-[#686868] rounded-md py-2 pl-4 pr-12 text-white w-full"
+            className="focus:outline-none font-body bg-[#686868] rounded-md py-2 pl-4 pr-12 text-white w-full sm:text-base"
             onChange={(e) => setEmail(e.target.value)}  
           ></input>
           {
@@ -85,18 +85,18 @@ const Login = () => {
             <input
               type={isVisible ? "text" : "password"}
               placeholder="Enter your password"
-              className="focus:outline-none font-body bg-[#686868] rounded-md py-2 pl-4 pr-12 text-white w-full"
+              className="focus:outline-none font-body bg-[#686868] rounded-md py-2 pl-4 pr-12 text-white w-full sm:text-base"
               onChange={(e) => setPassword(e.target.value)}
             />
             <button onClick={togglePasswordVisibility}>
               {isVisible ? (
-                <AiFillEyeInvisible className="absolute right-3 top-2 text-xl cursor-pointer text-[#b9b9b9]" />
+                <AiFillEyeInvisible className="absolute right-3 top-2 text-xl cursor-pointer text-[#b9b9b9] sm:top-3" />
               ) : (
-                <IoEyeSharp className="absolute right-3 top-2 text-xl cursor-pointer text-[#b9b9b9]" />
+                <IoEyeSharp className="absolute right-3 top-2 text-xl cursor-pointer text-[#b9b9b9] sm:top-3" />
               )}
             </button>
-            <button type="submit" className="w-full bg-brown py-2 px-4 rounded-lg mt-10 font-extrabold text-white">Login</button>
-            <p className="font-primary text-xs text-white mt-4 text-center">Don't have an account <span className="font-primary italic underline text-cream"><Link to="/auth/register">Create one</Link></span></p>
+            <button type="submit" className="w-full bg-brown py-2 px-4 rounded-lg mt-10 font-extrabold text-white hover:bg-[#552b1a] duration-200 sm:text-xl mt-20 xxl:mt-32">Login</button>
+            <p className="font-primary text-xs text-white mt-4 text-center sm:text-base">Don't have an account <span className="font-primary italic underline text-cream font-bold"><Link to="/auth/register">Create one</Link></span></p>
           </div>
         </form>
       </div>
