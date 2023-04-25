@@ -42,6 +42,9 @@ export default {
 				xl: "1440px",
 				xxl: "1536px",
 			},
+			width: {
+				120: "120%",
+			},
 		},
 	},
 	plugins: [],

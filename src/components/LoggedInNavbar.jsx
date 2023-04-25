@@ -16,15 +16,18 @@ import { getUserId } from '../helpers/getUserId.js';
 const LoggedInNavbar = () => {
   const [ isNavbarClicked, setIsNavbarClicked ] = useState(false);
   const [ isDropDownClicked , setIsDropDownClicked ] = useState(false);
+  const [ isLoaded, setIsLoaded ] = useState(false);
 
   const [ userDeets, setUserDeets ] = useState({});
   const userID = getUserId();
   
   const getData = async () => {
+    setIsLoaded(true)
     try {
       const response = await fetch(buildUrl(`/users/profile/${userID}`))
-      const deets = await response.json();
-      setUserDeets(deets);
+      const deets = await response.json()
+      setUserDeets(deets)
+      setIsLoaded(false)
     } catch(e) {
       console.log(e);
     }
@@ -63,15 +66,21 @@ const LoggedInNavbar = () => {
             <Link to="" className="font-semibold hover:text-brown duration-150">Favourite Cafes</Link>
             <Link to="" className="font-semibold hover:text-brown duration-150">About</Link>
             <Link to="" className="font-semibold hover:text-brown duration-150">Contact</Link>
-            <div className="flex flex-row gap-8 items-center border border-[#8b2801] py-2 px-4 rounded-md">
-              <Link to={{
+          
+            { !isLoaded ? (
+              <div className="flex flex-row gap-8 items-center border border-[#8b2801] py-2 px-4 rounded-md">
+                <Link to={{
                 pathname: `/profile/${userID}`,
                 state: { userID: userID }
-              }}>
-                <h1 className="font-extrabold">{userDeets.firstName}</h1>
-              </Link>
+                }}>
+                  <h1 className="font-extrabold">{userDeets.firstName}</h1>
+                </Link>
                 <img src={userDeets.profilePic} alt={userDeets.firstName + " " + userDeets.lastName} className="w-11 rounded-full cursor-pointer" onClick={() => setIsDropDownClicked(!isDropDownClicked)}/>
-            </div>
+              </div>
+            ):
+            (
+              <h1 className="flex flex-row gap-8 items-center border border-[#8b2801] py-2 px-4 rounded-md">Loading...</h1>
+            )}
           </div>
       </div>
       <AnimatePresence>
