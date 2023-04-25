@@ -35,8 +35,7 @@ const LoggedInNavbar = () => {
     sessionStorage.removeItem('token_expiration')
     sessionStorage.removeItem('user')
     sessionStorage.removeItem('userID')
-
-    window.location.href = "/";
+    window.location.reload();
   }
 
   useEffect(() => {

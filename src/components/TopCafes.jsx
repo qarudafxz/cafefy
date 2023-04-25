@@ -37,7 +37,7 @@ function TopCafes() {
                 <Link to={`/cafe/${cafe.name}/${cafe._id}`}><img src={cafe.logo} className="rounded-t-md w-full xxl:w-4/12 h-58"/></Link>  
                 <div className="bg-secondary p-4 rounded-b-md">
                   <div className='flex flex-row justify-between'>
-                    <h1 className="xxxsm: relative z-10 text-cream font-primary text-xl font-semibold mb-4">{cafe.name}</h1> 
+                    <h1 className="xxxsm: relative z-10 text-cream font-primary text-xl font-semibold mb-4 lg:text-3xl">{cafe.name}</h1> 
                     <MdRateReview className="xxxsm: relative z-10 text-white text-xl bg-primary p-1 rounded-md" size={36}/>
                   </div>
                   <p className="xxxsm: relative z-10 text-white font-primary text-md">{cafe.desc.length >= 50 ? cafe.desc.slice(0,80).trim() + "..." : cafe.desc}</p>

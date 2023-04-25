@@ -22,7 +22,7 @@ function Dashboard() {
           {session_token && <h1 className="xxxsm:text-white border border-[#8b2801] mt-10 text-lg px-4 py-2 rounded-lg leading-5 sm:text-2xl">👋 Welcome back! <span className="font-bold">{session_token && username.replace('"', '').replace('"','')}</span></h1>}
           <h1 className="xxxsm:text-4xl text-white font-bold leading-10 mt-4 xxsm:text-5xl xsm:text-6xl sm:text-5xl font-extrabold mb-4 leading-none xxl:text-8xl">Looking for a cafe to chill?</h1>
           <p className="xxxsm:text-white font-medium xxl:text-3xl mt-4 w-9/12">Check out all the listed cafes we have from within <span className="font-semibold">Butuan City</span>, Philippines</p>
-          <p className="xxxsm: text-white text-sm mt-12 xxl:text-xl"><a href="#cafes" className="flex flex-row items-center gap-3"><BiMouse /> Scroll Now</a></p>
+          <p className="xxxsm: text-white text-sm mt-12 xxl:text-xl"><a href="#cafes" className="flex flex-row items-center gap-3 border border-white rounded-full py-2 place-content-center md:w-4/12"><BiMouse /> Click to scroll</a></p>
         </div>
       </div>
         <h1 className="xxxsm:mx-xxxsm bg-brown text-white font-bold text-xl text-center py-2 px-3 rounded-lg relative xl:text-4xl py-5 top-40 xxl:mx-56">Find cafes near you</h1>

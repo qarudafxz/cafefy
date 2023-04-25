@@ -5,11 +5,20 @@ import { AiFillEdit, AiFillProfile } from 'react-icons/ai';
 import LoggedInNavbar from '../components/LoggedInNavbar'
 import CardSkeletonProfile from '../components/CardSkeletonProfile';
 import { AiFillStar } from 'react-icons/ai';
+import toast, { Toaster } from 'react-hot-toast';
+import { CAFEFY_DEV } from '../private/cafefyDev.js';
 
 function Profile() {
   let { id: userID } = useParams();
+  const dev = CAFEFY_DEV;
   const [ isLoading, setIsLoading ] = useState(false);
   const [ userDeets, setUserDeets ] = useState({});
+
+  const copyProfile = () => {
+    navigator.clipboard.writeText(`http://localhost:5173/users/${userID}`);
+    toast('Profile link copied to clipboard!')
+  }
+
 
   const getUserDetails = async () => {
     try {
@@ -32,15 +41,25 @@ function Profile() {
       <LoggedInNavbar />
       { isLoading ? ( <CardSkeletonProfile /> ) : ( 
         <div className="font-primary">
+          <Toaster 
+            toastOptions={{
+              style: {
+                borderTop: '7px solid #28D102',
+                padding: '16px',
+                color: '#28D102',
+              }
+            }}
+          />
           <img src={userDeets.bgCover} className="xxxsm:absolute -z-10"/>
           <img src={userDeets.profilePic} className="xxxsm:relative w-5/12 rounded-full m-auto top-24 border-4 border-[#131313]"/>
           <div className="xxxsm: flex flex-col">
             <div className="xxxsm: flex flex-row gap-4 mt-32 place-content-center place-items-center">
               <Link to="/profile/edit" className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full"><AiFillEdit />Edit Profile</Link>
-              <Link to="" className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full"><AiFillProfile />Share Profile</Link>
+              <button to="" className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full" onClick={copyProfile}><AiFillProfile />Share Profile</button>
             </div>
             <div className="font-primary xxxsm: flex flex-col gap-6 mt-12 m-xxxsm">
               <h1 className="xxxsm: text-white text-3xl font-bold text-center">{userDeets.firstName + " " + userDeets.lastName}</h1>
+              { userDeets._id == dev && <h1 className="font-bold text-white border border-[#8b2801] rounded-full flex gap-3 items-center place-content-center xxxsm:py-2" id="color"><img src="https://camo.githubusercontent.com/f7bd518a92e1206f7dd3cd5f16dabadb3df596b48ad7c44baae5a930f643c228/68747470733a2f2f63756c746f667468657061727479706172726f742e636f6d2f666c6167732f68642f6972616e706172726f742e676966" className="xxxsm:w-8 mb-2"/>Cafefy Dev</h1>}
               <p className="text-sm leading-4 text-[#919191] text-center">{userDeets.bio}</p>
             </div>
             <div className="xxxsm: flex flex-row gap-16 text-center place-content-center text-white font-primary font-semibold mt-10">

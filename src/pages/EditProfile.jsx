@@ -88,10 +88,10 @@ function EditProfile() {
       {session_token ? <LoggedInNavbar /> : null}
       <div className="xxxsm: mx-xxxsm flex flex-col gap-7 border border-[#616161] rounded-md p-4 md:flex-row">
         <div className="flex flex-col gap-3">
-          <h1 className="flex items-center gap-3 text-white font-extrabold text-2xl"><MdAccountCircle className="text-cream"/>Account settings</h1>
+          <h1 className="flex items-center gap-3 text-white font-extrabold text-2xl xl:text-5xl"><MdAccountCircle className="text-cream"/>Account settings</h1>
           { alertMessage && <p className="text-red-500 font-bold">{alertMessage}</p> }
           <div className="flex flex-col gap-3">
-            <h1 className="text-white font-bold text-md">Profile Picture</h1>
+            <h1 className="text-white font-bold text-md xl:text-2xl mt-10">Profile Picture</h1>
             {isSetProfilePic && 
               <div className="relative z-10 top-20 bg-primary p-4">
                 <AiOutlineCloseCircle size={24} className="text-white mb-2" onClick={
@@ -106,16 +106,16 @@ function EditProfile() {
             <div className="flex flex-row gap-8 items-center">
               <img src={user.profilePic == defaultPic ? defaultPic : user.profilePic} className="xxxsm: w-4/12 h-full rounded-full"/>
               <div className="flex flex-col gap-1">
-                <button className="disabled flex gap-2 items-center xxxsm:text-xs text-white font-bold bg-[#B57F6A] py-2 px-4 rounded-md"><BiUpload size={24}/>Upload own photo</button>
-                <button className="disabled flex gap-2 items-center xxxsm:text-xs text-white font-bold border border-white py-2 px-4 rounded-md" onClick={() => setProfile(true)}><TbLink size={24}/>Upload using link</button>
+                <button className="disabled flex gap-2 items-center xxxsm:text-xs text-white font-bold bg-[#B57F6A] py-2 px-4 rounded-md xl:text-xl"><BiUpload size={24}/>Upload own photo</button>
+                <button className="disabled flex gap-2 items-center xxxsm:text-xs text-white font-bold border border-white py-2 px-4 rounded-md xl:text-xl" onClick={() => setProfile(true)}><TbLink size={24}/>Upload using link</button>
               </div>
             </div>
           </div>
-          <h1 className="text-white font-bold text-md">Change Background Picture</h1>
+          <h1 className="text-white font-bold text-md xl:text-2xl">Change Background Picture</h1>
           <input type="text" onChange={(e) => setBgCover(e.target.value)} className="focus:outline-none p-2 rounded-md"></input>
-          <h1 className="text-white font-bold text-md">Change Bio</h1>
-          <textarea type="text" onChange={(e) => setBio(e.target.value)} className="focus:outline-none p-4 rounded-md"></textarea>
-          <button className="bg-brown py-2 px-4 rounded-full text-white font-bold" onClick={editProfile}>Update my profile</button>
+          <h1 className="text-white font-bold text-md xl:text-2xl">Change Bio</h1>
+          <textarea type="text" onChange={(e) => setBio(e.target.value)} className="focus:outline-none p-4 rounded-md xl:h-52"></textarea>
+          <button className="bg-brown py-2 px-4 rounded-full text-white font-bold xl:text-3xl mt-28" onClick={editProfile}>Update my profile</button>
         </div>
         <img src={CupPic} alt="Cafefy Cup" className="xxxsm:hidden md:block w-6/12"/>
       </div>

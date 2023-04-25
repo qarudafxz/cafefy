@@ -9,6 +9,7 @@ import { AiFillStar } from 'react-icons/ai';
 import { SESSION_TOKEN } from '../private/sessionToken.js';
 import { getUserID } from '../private/getUserID.js';
 import { CAFEFY_DEV } from '../private/cafefyDev.js';
+import toast, { Toaster } from 'react-hot-toast';
 
 function Profile() {
   const dev = CAFEFY_DEV;
@@ -18,6 +19,12 @@ function Profile() {
   const [ userDeets, setUserDeets ] = useState({});
   const session_token = SESSION_TOKEN;
   const session_user_id = getUserID();
+
+  const copyProfile = () => {
+    navigator.clipboard.writeText(buildUrl(`/users/${userID}`));
+    toast('Profile link copied to clipboard!')
+    console.log('Profile link copied to clipboard!')
+  }
 
   const getUserDetails = async () => {
     try {
@@ -40,6 +47,15 @@ function Profile() {
       { session_token ? <LoggedInNavbar /> : <Navbar /> } 
       { isLoading ? ( <CardSkeletonProfile /> ) : ( 
         <div className="font-primary">
+          <Toaster 
+            toastOptions={{
+              style: {
+                borderTop: '7px solid #28D102',
+                padding: '16px',
+                color: '#28D102',
+              }
+            }}
+          />
           <img src={userDeets.bgCover} className="xxxsm:absolute -z-10"/>
           <img src={userDeets.profilePic} className="xxxsm:relative w-5/12 rounded-full m-auto top-24 border-4 border-[#131313]"/>
           <div className="xxxsm: flex flex-col">
@@ -47,8 +63,8 @@ function Profile() {
             {
               session_user_id === userID && ( 
               <div className="xxxsm: flex flex-row gap-4 mt-32 place-content-center place-items-center">
-                <button className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full"><AiFillEdit />Edit Profile</button>
-                <button className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full"><AiFillProfile />Share Profile</button>
+                <Link to="/profile/edit" className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full"><AiFillEdit />Edit Profile</Link>
+                <button to="" className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full" onClick={copyProfile}><AiFillProfile />Share Profile</button>
               </div>
               )
             }
