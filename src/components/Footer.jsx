@@ -11,10 +11,15 @@ function Footer() {
         <img src={Logo} alt="Cafefy" className="xxxsm: w-5/12 h-full sm: w-20 md:w-24 first-letter: xxl:w-28"/>
         <Link to="/auth/login"><button className="border border-white px-4 py-2 rounded-3xl text-white">Get Started</button></Link>
       </div>
-      <ul className="xxxsm: flex flex-col gap-3 text-white text-xs cursor-pointer sm: leading-3">
-        <li className="hover:text-[#868686] duration-200">About Cafefy</li>
-        <li className="hover:text-[#868686] duration-200">The Developer</li>
-        <li className="hover:text-[#868686] duration-200">Objective of the Project</li>
+      <ul className="xxxsm:flex flex-col gap-3 text-white text-xs cursor-pointer sm:grid grid-cols-2 leading-3">
+        <Link to="/about" className="hover:text-[#868686] duration-200">About Cafefy</Link>
+        <div className="flex flex-col gap-3">
+          <h1 className="font-bold">Follow the developer's social media</h1>
+          <a href="https://www.facebook.com/francisj.tinao/" target="_blank" className="hover:text-[#868686] duration-200">Facebook</a>
+          <a href="https://twitter.com/francistinao_" target="_blank" className="hover:text-[#868686] duration-200">Twitter</a>
+          <a href="https://www.instagram.com/francis.tinao/" target="_blank" className="hover:text-[#868686] duration-200">Instagram</a>
+          <a href="https://www.linkedin.com/in/francis-tin-ao-10050412a/" target="_blank" className="hover:text-[#868686] duration-200">LinkedIn</a>
+        </div>
       </ul>
       <div className="flex flex-row gap-4 items-center text-white">
         <AiFillGithub size={24}/>

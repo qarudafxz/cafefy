@@ -64,8 +64,7 @@ const LoggedInNavbar = () => {
             <input type="text" placeholder='Search cafes' className="py-2 pl-6 rounded-xl focus:outline-none bg-transparent border border-white font-primary text-white"/>
             <Link to="/cafes" className="font-semibold hover:text-brown duration-150">Cafes</Link>
             <Link to="" className="font-semibold hover:text-brown duration-150">Favourite Cafes</Link>
-            <Link to="" className="font-semibold hover:text-brown duration-150">About</Link>
-            <Link to="" className="font-semibold hover:text-brown duration-150">Contact</Link>
+            <Link to="/about" className="font-semibold hover:text-brown duration-150">About</Link>
           
             { !isLoaded ? (
               <div className="flex flex-row gap-8 items-center border border-[#8b2801] py-2 px-4 rounded-md">
@@ -140,11 +139,7 @@ const LoggedInNavbar = () => {
                   </div>
                   <div className="flex flex-row items-center">
                     <HiInformationCircle className="text-xl mr-2" />
-                    <Link to="/cafes">About</Link>
-                  </div>
-                  <div className="flex flex-row items-center">
-                    <MdPermContactCalendar className="text-xl mr-2" />
-                    <Link to="/cafes">Contact</Link>
+                    <Link to="/about">About</Link>
                   </div>
                 <button className="bg-brown rounded-3xl py-1 font-bold text-lg text-ellipsis" onClick={toggleLogout}>Logout</button>
                 </div>

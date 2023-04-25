@@ -10,6 +10,7 @@ import ViewCafe from './pages/ViewCafe';
 import Rate from './pages/Rate';
 import ViewUserProfile from './pages/ViewUserProfile';
 import EditProfile from './pages/EditProfile';
+import About from './pages/About';
 
 const App = () => {
   return (
@@ -51,6 +52,10 @@ const App = () => {
           <Route 
             path="/profile/edit"
             element={<EditProfile />}  
+          />
+          <Route
+            path="/about"
+            element={<About />} 
           />
         </Routes>
       </Router>

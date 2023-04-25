@@ -137,11 +137,9 @@ function ViewCafe() {
                             <Link 
                               to={`/review/${cafeID}`} 
                               state={{cafeID: cafeID}}
-                              className="xxxsm:bg-brown font-semibold text-xl rounded-md py-2 px-8 text-white mb-4 text-center"
+                              className="w-full xxxsm:bg-brown mt-4 text-white text-md font-semibold rounded-md py-2 px-8"
                             >
-                              <button>
-                                Write a review
-                              </button>
+                              Write a review
                             </Link>
                           )
                       }

@@ -30,8 +30,7 @@ const Navbar = () => {
           <div className="xxxsm:hidden md:flex flex-row gap-4 font-primary text-white items-center sm:text-xs lg:text-lg gap-7">
             <input type="text" placeholder='Search cafes' className="py-2 pl-6 rounded-xl focus:outline-none bg-transparent border border-white font-primary text-white"/>
             <Link to="/cafes" className="font-semibold hover:text-brown duration-150">Cafes</Link>
-            <Link to="/" className="font-semibold hover:text-brown duration-150">About</Link>
-            <Link to="/" className="font-semibold hover:text-brown duration-150">Contact</Link>
+            <Link to="/about" className="font-semibold hover:text-brown duration-150">About</Link>
             <Link to="/auth/login" className="text-brown font-semibold border border-[#8b2801] py-2 px-6 rounded-full hover:duration-200">Log in</Link>
             <Link to="/auth/register" className="text-primary font-semibold bg-brown py-2 px-4 rounded-full sm:">Register</Link>
           </div>
@@ -62,11 +61,7 @@ const Navbar = () => {
                     </div>
                     <div className="flex flex-row items-center">
                       <HiInformationCircle className="text-xl mr-2" />
-                      <Link to="/cafes">About</Link>
-                    </div>
-                    <div className="flex flex-row items-center">
-                      <MdPermContactCalendar className="text-xl mr-2" />
-                      <Link to="/cafes">Contact</Link>
+                      <Link to="/about">About</Link>
                     </div>
                   </div>
                 </div>

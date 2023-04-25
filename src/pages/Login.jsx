@@ -6,6 +6,7 @@ import { AiFillEyeInvisible } from 'react-icons/ai';
 import { buildUrl } from '../utils/buildUrl.js';
 import Footer from '../components/Footer';
 import TopLoadingBar from 'react-top-loading-bar';
+import { SESSION_TOKEN } from '../private/sessionToken';
 
 const Login = () => {
   const [ isVisible, setIsVisible ] = useState(false);
@@ -14,6 +15,7 @@ const Login = () => {
   const [ password, setPassword ] = useState("");
   const [ loginMessage, setLoginMessage ] = useState("");
   const location = useLocation();
+  const session_token = SESSION_TOKEN;
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -73,6 +75,11 @@ const Login = () => {
       setProgress(100)
     }, 1000)
   },[location])
+
+  useEffect(()=> {
+    if(session_token)
+      window.location.href = '/cafes';
+  },[])
 
   return (
     <div>
