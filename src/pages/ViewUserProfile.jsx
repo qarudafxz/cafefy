@@ -8,8 +8,11 @@ import CardSkeletonProfile from '../components/CardSkeletonProfile';
 import { AiFillStar } from 'react-icons/ai';
 import { SESSION_TOKEN } from '../private/sessionToken.js';
 import { getUserID } from '../private/getUserID.js';
+import { CAFEFY_DEV } from '../private/cafefyDev.js';
 
 function Profile() {
+  const dev = CAFEFY_DEV;
+
   let { id: userID } = useParams();
   const [ isLoading, setIsLoading ] = useState(false);
   const [ userDeets, setUserDeets ] = useState({});
@@ -51,6 +54,7 @@ function Profile() {
             }
             <div className={`font-primary xxxsm: flex flex-col gap-6 ${session_user_id === userID ? "mt-12" : "mt-32"} m-xxxsm`}>
               <h1 className="xxxsm: text-white text-3xl font-bold text-center">{userDeets.firstName + " " + userDeets.lastName}</h1>
+            { userDeets._id == dev && <h1 className="font-bold text-white border border-[#8b2801] rounded-full flex gap-3 items-center place-content-center xxxsm:py-2" id="color"><img src="https://camo.githubusercontent.com/f7bd518a92e1206f7dd3cd5f16dabadb3df596b48ad7c44baae5a930f643c228/68747470733a2f2f63756c746f667468657061727479706172726f742e636f6d2f666c6167732f68642f6972616e706172726f742e676966" className="xxxsm:w-8 mb-2"/>Cafefy Dev</h1>}
               <p className="text-sm leading-4 text-[#919191] text-center">{userDeets.bio}</p>
             </div>
             <div className="xxxsm: flex flex-row gap-16 text-center place-content-center text-white font-primary font-semibold mt-10">

@@ -57,7 +57,7 @@ function Profile() {
               !userDeets.rates || userDeets.rates.length === 0 ? (
                 <div className="xxxsm: flex flex-col gap-2 text-center mt-24 mx-xxxsm">
                   <p className="xxxsm: text-3xl font-bold text-white">No ratings yet!</p>
-                  <Link to="/home" className="xxxsm: border-2 border-brown rounded-full py-2 text-white font-bold cursor-pointer">Rate Now</Link>
+                  <Link to="/cafes" className="xxxsm: border-2 border-brown rounded-full py-2 text-white font-bold cursor-pointer">Rate Now</Link>
                 </div>
               ) : (
                 <div className="xxxsm:mx-xxxsm flex flex-col gap-2 mt-24 font-primary">
