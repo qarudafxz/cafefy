@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { IoEyeSharp } from 'react-icons/io5';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import { buildUrl } from '../utils/buildUrl.js';
 import Footer from '../components/Footer';
+import TopLoadingBar from 'react-top-loading-bar';
 
 const Login = () => {
   const [ isVisible, setIsVisible ] = useState(false);
+  const [ progress, setProgress ] = useState(0);
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ loginMessage, setLoginMessage ] = useState("");
+  const location = useLocation();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -19,7 +22,8 @@ const Login = () => {
       setLoginMessage("Please fill all the fields");
       return;
     }
-  
+    
+    setProgress(30);
     try {
       const res = await fetch(buildUrl('/auth/login'), {
         method: 'POST',
@@ -31,7 +35,8 @@ const Login = () => {
           password
         })
       });
-  
+      
+      setProgress(100);
       const data = await res.json();
   
       if (data.message === "User logged in successfully") {
@@ -62,10 +67,21 @@ const Login = () => {
     },2000);
   }, [loginMessage])
 
+  useEffect(() => {
+    setProgress(30)
+    setTimeout(() => {
+      setProgress(100)
+    }, 1000)
+  },[location])
+
   return (
     <div>
       <Navbar />
-
+      <TopLoadingBar
+          color='#8b2801'
+          progress={progress}
+          onLoaderFinished={() => setProgress(0)}
+        />
       <div className="xxxsm:w-11/12 m-auto bg-[#232323] p-4 rounded-lg mt-14 sm:w-6/12 md:w-4/12 p-6 xl:w-3/12 xxl:w-3/12">
         <p className="xxxsm:font-primary text-white text-xs sm:text-lg xxl:mt-4">Welcome Back!</p>
         <h1 className="xxxsm:font-primary text-cream text-4xl font-extrabold tracking-wide mb-4 sm:text-6xl">Log In</h1>

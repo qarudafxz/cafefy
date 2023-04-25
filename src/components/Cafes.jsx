@@ -5,7 +5,7 @@ import GridCardSkeleton from './GridCardSkeleton';
 import { IoLocationSharp } from 'react-icons/io5'
 import { FiArrowUpRight } from 'react-icons/fi';
 
-function Cafes() {
+function Cafes({ location, setProgress }) {
   const [ cafeData, setCafeData ] = useState([]);
   const [ isLoading, setIsLoading ] = useState(false);
 
@@ -17,15 +17,19 @@ function Cafes() {
       })
       const data = await response.json();
       setCafeData(data);
-      setIsLoading(false);
     } catch(err) {
       console.log(err);
     }
   }
 
   useEffect(() => {
+    setProgress(30);
     fetchData();
-  }, []);
+    setTimeout(() => {
+      setIsLoading(false);
+      setProgress(100);
+    },1000);
+  }, [ location ]);
   
   return (
     <div>

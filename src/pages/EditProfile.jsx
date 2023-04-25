@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react'
+import { useLocation } from 'react-router-dom';
 import { MdAccountCircle } from 'react-icons/md';
 import { BiUpload } from 'react-icons/bi';
 import { TbLink } from 'react-icons/tb';
@@ -8,6 +9,7 @@ import { SESSION_TOKEN } from '../private/sessionToken';
 import CupPic from '../assets/cup_bg.png';
 import { getUserID } from '../private/getUserID.js';
 import { buildUrl }from '../utils/buildUrl.js';
+import TopLoadingBar from 'react-top-loading-bar';
 
 import Footer from '../components/Footer';
 
@@ -15,6 +17,7 @@ function EditProfile() {
   let defaultPic = "https://static.vecteezy.com/system/resources/previews/002/412/377/original/coffee-cup-logo-coffee-shop-icon-design-free-vector.jpg";
   let defaultBg = "https://wallpapercave.com/wp/wp11903179.jpg";
 
+  const [ progress, setProgress ] = useState(0);
   const [ user, setUser ] = useState({});
   const [ profilePic, setProfilePic ] = useState(defaultPic);
   const [ bgCover, setBgCover ] = useState(defaultBg);
@@ -24,6 +27,7 @@ function EditProfile() {
   const [ alertMessage, setAlertMessage ] = useState("");
   const session_token = SESSION_TOKEN;
   const userID = getUserID();
+  const location = useLocation();
 
   const link = (e) => {
     e.preventDefault()
@@ -74,11 +78,13 @@ function EditProfile() {
   }
 
   useEffect(()=> {
+    setProgress(30)
     getData();
 
+    setProgress(100);
     if(!session_token) 
       window.location.href = '/auth/login';
-  }, [])
+  }, [location])
 
   useEffect(() => {
     setTimeout(() => {
@@ -89,6 +95,11 @@ function EditProfile() {
   return (
     <div className={`relative ${ !isSetProfilePic ? 'backdrop-filter backdrop-blur-md' : 'bg-gray-500 bg-opacity-50'} font-primary`}>
       {session_token ? <LoggedInNavbar /> : null}
+      <TopLoadingBar
+          color='#8b2801'
+          progress={progress}
+          onLoaderFinished={() => setProgress(0)}
+        />
       <div className="mt-14 xxxsm: mx-xxxsm flex flex-col gap-7 border border-[#616161] rounded-md p-4 md:flex-row lg:mx-56 p-10">
         <div className="flex flex-col gap-3">
           <h1 className="flex items-center gap-3 text-white font-extrabold text-2xl xl:text-5xl"><MdAccountCircle className="text-cream"/>Account settings</h1>

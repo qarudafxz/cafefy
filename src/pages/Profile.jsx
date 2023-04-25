@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useLocation } from 'react-router-dom'
 import { buildUrl } from '../utils/buildUrl.js';
 import { AiFillEdit, AiFillProfile } from 'react-icons/ai';
 import LoggedInNavbar from '../components/LoggedInNavbar'
@@ -9,13 +9,16 @@ import { AiFillStar } from 'react-icons/ai';
 import toast, { Toaster } from 'react-hot-toast';
 import { CAFEFY_DEV } from '../private/cafefyDev.js';
 import { SESSION_TOKEN } from '../private/sessionToken.js';
+import TopLoadingBar from 'react-top-loading-bar';
 
 function Profile() {
   let { id: userID } = useParams();
   const dev = CAFEFY_DEV;
+  const [ progress, setProgress ] = useState(0);
   const [ isLoading, setIsLoading ] = useState(false);
   const [ userDeets, setUserDeets ] = useState({});
   const session_token = SESSION_TOKEN;
+  const location = useLocation();
 
   const copyProfile = () => {
     navigator.clipboard.writeText(`http://localhost:5173/users/${userID}`);
@@ -24,11 +27,16 @@ function Profile() {
 
 
   const getUserDetails = async () => {
+    setProgress(30)
     try {
       setIsLoading(true);
       const response = await fetch(buildUrl(`/users/profile/${userID}`))
       const details = await response.json();
+
       setUserDeets(details);
+      setTimeout(() => {
+        setProgress(100);
+      }, 1000)
     } catch(e) { 
       console.log(e);
     }
@@ -44,14 +52,10 @@ function Profile() {
       { session_token ? <LoggedInNavbar /> : <Navbar /> }
       { isLoading ? ( <CardSkeletonProfile /> ) : ( 
         <div className="font-primary">
-          <Toaster 
-            toastOptions={{
-              style: {
-                borderTop: '7px solid #28D102',
-                padding: '16px',
-                color: '#28D102',
-              }
-            }}
+          <TopLoadingBar
+            color='#8b2801'
+            progress={progress}
+            onLoaderFinished={() => setProgress(0)}
           />
           <img src={userDeets.bgCover} className="absolute -z-10 object-scale-down w-full sm:object-fit" style={{
             backgroundPosition: 'center center',

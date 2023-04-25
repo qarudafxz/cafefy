@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom' 
+import { useNavigate, Link, useLocation } from 'react-router-dom' 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CupBg from '../assets/cup_bg.png';
 
 import { buildUrl } from '../utils/buildUrl.js';
+import TopLoadingBar from 'react-top-loading-bar';
 
 const Register = () => {
   const navigate = useNavigate();
+  const [ progress, setProgress ] = useState(0);
   const [ firstName, setFirstName ] = useState("")
   const [ lastName, setLastName ] = useState("")
   const [ email, setEmail ] = useState("")
@@ -16,6 +18,7 @@ const Register = () => {
   const [ confirmPassword, setConfirmPassword ] = useState("")
   const [ alertMessage, setAlertMessage ] = useState("")
   const [ isPassword, setIsPassword ] = useState(true);
+  const location = useLocation();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -26,6 +29,7 @@ const Register = () => {
       setConfirmPassword("");
       return;
     } else {
+      setProgress(30);
       try {
         const response = await fetch(buildUrl('/auth/signup'), {
           method: 'POST',
@@ -39,7 +43,7 @@ const Register = () => {
             password
           })
         })
-
+        setProgress(100);
         if (response.status === 200) {
           navigate('/auth/login');
         } else {
@@ -52,6 +56,12 @@ const Register = () => {
     }
   }
 
+  useEffect(() => {
+    setProgress(30);
+    setTimeout(() => {
+      setProgress(100);
+    },1000)
+  },[location])
 
   useEffect(() => {
     setTimeout(() => {

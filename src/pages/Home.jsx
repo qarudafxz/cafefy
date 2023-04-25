@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import Bg from '../assets/bg.svg';
 import { getUserId } from '../helpers/getUserId.js';
+import TopLoadingBar from 'react-top-loading-bar';
 
 import Navbar from '../components/Navbar';
 import TopCafes from '../components/TopCafes';
@@ -12,9 +13,24 @@ import Footer from '../components/Footer';
 const userID = getUserId();
 
 function Home() {
+  const [ progress, setProgress ] = useState(0);
+  const location = useLocation();
+
+  useEffect(() => {
+    setProgress(20);
+    setTimeout(() => {
+      setProgress(100);
+    })
+  }, [ location ]);
+
   return (
     <div>
       <div className="">
+        <TopLoadingBar
+          color='#8b2801'
+          progress={progress}
+          onLoaderFinished={() => setProgress(0)}
+        />
         <Navbar />
         <img src={Bg} className="absolute inset-0 object-cover xxxsm:h-max w-full xl:h-4/6"/>
         {/* Hero Section */}

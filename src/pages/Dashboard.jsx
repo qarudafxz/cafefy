@@ -1,21 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom';
 import Illus from '../assets/illus.svg';
 import { BiMouse } from 'react-icons/bi';
 import Cafes from '../components/Cafes';
 import Footer from '../components/Footer'
 import { SESSION_TOKEN } from '../private/sessionToken';
 
+import TopLoadingBar from 'react-top-loading-bar';
 import LoggedInNavbar from '../components/LoggedInNavbar'
 import Navbar from '../components/Navbar';
 
 function Dashboard() {
   const session_token = SESSION_TOKEN;
+  const [ progress, setProgress ] = useState(0);
 
+  const location = useLocation();
   const username = sessionStorage.getItem('user');
   
   return (
     <div>
       { session_token ? <LoggedInNavbar /> : <Navbar />}
+      <TopLoadingBar
+          color='#8b2801'
+          progress={progress}
+          onLoaderFinished={() => setProgress(0)}
+        />
       <div className="mt-10xxxsm: flex flex-col gap-4 mx-xxxsm font-primary scroll-smooth sm:flex-row gap-10 xl:mx-56 xxl:gap-36" style={{scrollBehavior: "smooth"}}>
         <img src={Illus} className="mt-4 sm:w-5/12 md:w-4/12"/>
         <div className={`xxxsm: flex flex-col ${!session_token && "mt-10"}`}>
@@ -26,7 +35,7 @@ function Dashboard() {
         </div>
       </div>
         <h1 className="xxxsm:mx-xxxsm bg-brown text-white font-bold text-xl text-center py-2 px-3 rounded-lg relative xl:text-4xl py-5 top-40 xxl:mx-56">Find cafes near you</h1>
-        <Cafes/>
+        <Cafes location={location} setProgress={setProgress}/>
       <Footer />
     </div>
   )

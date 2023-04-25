@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { buildUrl } from '../utils/buildUrl.js';
 import LoggedInNavbar from '../components/LoggedInNavbar';
@@ -9,17 +9,20 @@ import { IoLocationSharp } from 'react-icons/io5'
 import { SESSION_TOKEN } from '../private/sessionToken.js';
 import CardSkeleton from '../components/CardSkeleton';
 import { getUserId } from '../helpers/getUserId.js';
+import TopLoadingBar from 'react-top-loading-bar';
 
 function ViewCafe() {
   const [ isLoading, setIsLoading ] = useState(false);
+  const [ progress, setProgress ] = useState(0);
   const { id: cafeID } = useParams();
   const [ cafeDeets, setCafeDeets ] = useState({});
   const session_token = SESSION_TOKEN;
   const userID = getUserId();
   const [ disableBtn, setDisableBtn ] = useState(false);
+  const location = useLocation;
 
   const getCafeDetails = async () => {
-    setIsLoading(true);
+    // setIsLoading(true);
     try {
       const response = await fetch(buildUrl(`/cafes/cafe/${cafeID}`), {
         method: 'GET'
@@ -33,8 +36,15 @@ function ViewCafe() {
   }
 
   useEffect(() => {
+    setIsLoading(true);
+    setProgress(30);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      setProgress(100);
+    }, 1000);
     getCafeDetails();
-  }, [])
+  }, [location])
 
   useEffect(() => {
     setDisableBtn(userID && cafeDeets.raters?.find(rate => rate.userId === userID));
@@ -42,6 +52,11 @@ function ViewCafe() {
 
   return (
     <div>
+      <TopLoadingBar
+        color='#8b2801'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       { !session_token ? <Navbar /> : <LoggedInNavbar /> }
       <div className="xxxsm:flex flex-col gap-2 mb-14">
         <div className="font-primary mx-xxxsm">
