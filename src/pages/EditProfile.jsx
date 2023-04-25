@@ -75,6 +75,9 @@ function EditProfile() {
 
   useEffect(()=> {
     getData();
+
+    if(!session_token) 
+      window.location.href = '/auth/login';
   }, [])
 
   useEffect(() => {
@@ -86,7 +89,7 @@ function EditProfile() {
   return (
     <div className={`relative ${ !isSetProfilePic ? 'backdrop-filter backdrop-blur-md' : 'bg-gray-500 bg-opacity-50'} font-primary`}>
       {session_token ? <LoggedInNavbar /> : null}
-      <div className="xxxsm: mx-xxxsm flex flex-col gap-7 border border-[#616161] rounded-md p-4 md:flex-row">
+      <div className="mt-14 xxxsm: mx-xxxsm flex flex-col gap-7 border border-[#616161] rounded-md p-4 md:flex-row lg:mx-56 p-10">
         <div className="flex flex-col gap-3">
           <h1 className="flex items-center gap-3 text-white font-extrabold text-2xl xl:text-5xl"><MdAccountCircle className="text-cream"/>Account settings</h1>
           { alertMessage && <p className="text-red-500 font-bold">{alertMessage}</p> }

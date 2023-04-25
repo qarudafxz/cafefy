@@ -27,7 +27,7 @@ const StarRating = ({ rating, setRating, disabled = false}) => {
         return (
           <label
             key={i}
-            className="transform transition hover:scale-125 ease-in-out"
+            className="transform transition hover:scale-125 ease-in-out lg:text-2xl"
           >
             <input
               type="radio"

@@ -3,16 +3,19 @@ import { Link, useParams } from 'react-router-dom'
 import { buildUrl } from '../utils/buildUrl.js';
 import { AiFillEdit, AiFillProfile } from 'react-icons/ai';
 import LoggedInNavbar from '../components/LoggedInNavbar'
+import Navbar from '../components/Navbar.jsx';
 import CardSkeletonProfile from '../components/CardSkeletonProfile';
 import { AiFillStar } from 'react-icons/ai';
 import toast, { Toaster } from 'react-hot-toast';
 import { CAFEFY_DEV } from '../private/cafefyDev.js';
+import { SESSION_TOKEN } from '../private/sessionToken.js';
 
 function Profile() {
   let { id: userID } = useParams();
   const dev = CAFEFY_DEV;
   const [ isLoading, setIsLoading ] = useState(false);
   const [ userDeets, setUserDeets ] = useState({});
+  const session_token = SESSION_TOKEN;
 
   const copyProfile = () => {
     navigator.clipboard.writeText(`http://localhost:5173/users/${userID}`);
@@ -38,7 +41,7 @@ function Profile() {
 
   return (
     <div>
-      <LoggedInNavbar />
+      { session_token ? <LoggedInNavbar /> : <Navbar /> }
       { isLoading ? ( <CardSkeletonProfile /> ) : ( 
         <div className="font-primary">
           <Toaster 
@@ -50,10 +53,13 @@ function Profile() {
               }
             }}
           />
-          <img src={userDeets.bgCover} className="xxxsm:absolute -z-10"/>
-          <img src={userDeets.profilePic} className="xxxsm:relative w-5/12 rounded-full m-auto top-24 border-4 border-[#131313]"/>
+          <img src={userDeets.bgCover} className="absolute -z-10 object-scale-down w-full sm:object-fit" style={{
+            backgroundPosition: 'center center',
+            backgroundSize: 'cover',
+          }}/>
+          <img src={userDeets.profilePic} className="xxxsm:relative w-5/12 rounded-full m-auto top-24 border-4 border-[#131313] sm:top-80 w-52 border-8"/>
           <div className="xxxsm: flex flex-col">
-            <div className="xxxsm: flex flex-row gap-4 mt-32 place-content-center place-items-center">
+            <div className="xxxsm: flex flex-row gap-4 mt-32 place-content-center place-items-center sm:mt-96">
               <Link to="/profile/edit" className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full"><AiFillEdit />Edit Profile</Link>
               <button to="" className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full" onClick={copyProfile}><AiFillProfile />Share Profile</button>
             </div>
@@ -90,14 +96,17 @@ function Profile() {
                             state: { cafeID: rate.cafeId }
                           }}
                           >
-                            <img src={rate.cafeLogo} alt={rate.cafeName} className="xxxsm: rounded-l-md w-full"/>
+                            <img src={rate.cafeLogo} alt={rate.cafeName} className="xxxsm: rounded-l-md w-full" style={{
+                              width: '120px',
+                              height: 'full',
+                            }}/>
                           </Link>
                           <div className="xxxsm: bg-white w-8/12 rounded-r-lg flex flex-col justify-between p-4 hover:bg-[#dadada] duration-200">
                             <div className="flex flex-row gap-2">
                               <Link to={{
                                  pathname: `/cafe/${rate.cafeName}/${rate.cafeId}`,
                                  state: { cafeID: rate.cafeId }
-                                }} className="xxxsm:font-semibold text-brown text-xs hover:text-cream duration-200">
+                                }} className="xxxsm:font-semibold text-brown text-xs hover:text-black duration-200 sm:text-lg">
                                 <h1>{rate.cafeName}</h1>
                               </Link>
                               <div className="xxxsm: flex flex-row gap-2 items-center">
@@ -107,7 +116,7 @@ function Profile() {
                             </div>
                             <hr className="w-full"></hr>
                             <p className="xxxsm: font-semibold text-xs text-ellipsis whitespace-nowrap overflow-hidden mt-4">{rate.comment}</p>
-                            <p className="xxxsm: text-xs text-right mt-4">{new Date(rate.date).toLocaleDateString('en-US')}</p>
+                            <p className="xxxsm: text-xs text-right mt-4">{new Date(rate.date).toLocaleDateString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true})}</p>
                           </div>
                         </div>
                       )

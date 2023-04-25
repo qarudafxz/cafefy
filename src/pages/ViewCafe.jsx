@@ -43,7 +43,7 @@ function ViewCafe() {
   return (
     <div>
       { !session_token ? <Navbar /> : <LoggedInNavbar /> }
-      <div className="xxxsm:flex flex-col gap-2">
+      <div className="xxxsm:flex flex-col gap-2 mb-14">
         <div className="font-primary mx-xxxsm">
             {
               isLoading ? <CardSkeleton /> : ( 
@@ -109,7 +109,7 @@ function ViewCafe() {
                                 </div>
                                 <hr></hr>
                                 <p className="text-sm font-semibold">{rate?.comment}</p>
-                                <p className="text-xs from-neutral-700">{new Date(rate?.date).toLocaleDateString('en-US')}</p>
+                                <p className="text-xs from-neutral-700">{new Date(rate?.date).toLocaleDateString('en-US',{ hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true})}</p>
                               </div>
                             )
                           })
