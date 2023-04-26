@@ -43,6 +43,7 @@ const Register = () => {
             password
           })
         })
+        
         setProgress(100);
         if (response.status === 200) {
           navigate('/auth/login');
