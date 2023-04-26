@@ -44,9 +44,6 @@ function EditProfile() {
       setAlertMessage("Please fill all the fields below");
       return;
     } 
-
-    console.log(profilePic);
-    console.log(bgCover);
     try {
       await fetch(buildUrl(`/users/account-settings/${userID}`), {
         method: 'PUT',
@@ -99,6 +96,7 @@ function EditProfile() {
           color='#8b2801'
           progress={progress}
           onLoaderFinished={() => setProgress(0)}
+          height={4}
         />
       <div className="mt-14 xxxsm: mx-xxxsm flex flex-col gap-7 border border-[#616161] rounded-md p-4 md:flex-row lg:mx-56 p-10">
         <div className="flex flex-col gap-3">

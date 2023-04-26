@@ -88,6 +88,7 @@ const Login = () => {
           color='#8b2801'
           progress={progress}
           onLoaderFinished={() => setProgress(0)}
+          height={4}
         />
       <div className="xxxsm:w-11/12 m-auto bg-[#232323] p-4 rounded-lg mt-14 sm:w-6/12 md:w-4/12 p-6 xl:w-3/12 xxl:w-3/12">
         <p className="xxxsm:font-primary text-white text-xs sm:text-lg xxl:mt-4">Welcome Back!</p>

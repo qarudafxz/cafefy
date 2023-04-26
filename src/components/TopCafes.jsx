@@ -27,15 +27,15 @@ function TopCafes() {
   },[])
 
   return (
-    <div className="xxxsm:mx-xxxsm mt-16 flex flex-col gap-4 sm:mt-28 xl:mt-72">
-      <h1 className="xxxsm: relative z-10 text-white font-primary text-xl font-semibold sm:text-2xl md:text-4xl font-bold">🔥 Top 5 Rated Cafes</h1>
-      <div className="xxxsm: flex flex-col gap-2">
+    <div className="xxxsm:hidden md:block xl:mt-72">
+      <h1 className="xxxsm: relative z-10 text-white font-primary text-xl font-semibold sm:text-2xl md:text-4xl font-bold mb-10">🔥 Top 5 Rated Cafes</h1>
+      <div className="xxxsm: flex flex-col gap-4">
       { isLoading ? <CardSkeleton/> : (
          sortedCafes.map((cafe) => {
             return (
-              <div className="flex flex-col shadow-3xl sm:flex-row xxl:w-5/6" key={cafe._id}>
-                <Link to={`/cafe/${cafe.name}/${cafe._id}`}><img src={cafe.logo} className="rounded-t-md w-full xxl:w-4/12 h-58"/></Link>  
-                <div className="bg-secondary p-4 rounded-b-md">
+              <div className="flex flex-col shadow-3xl sm:flex-row" style={{ height: '200px'}} key={cafe._id}>
+                <Link to={`/cafe/${cafe.name}/${cafe._id}`}><img src={cafe.logo} className="rounded-l-md object-cover w-full h-full"/></Link>  
+                <div className="bg-secondary p-4 rounded-b-md w-full md:rounded-b-none rounded-r-md">
                   <div className='flex flex-row justify-between'>
                     <h1 className="xxxsm: relative z-10 text-cream font-primary text-xl font-semibold mb-4 lg:text-3xl">{cafe.name}</h1> 
                     <MdRateReview className="xxxsm: relative z-10 text-white text-xl bg-primary p-1 rounded-md" size={36}/>

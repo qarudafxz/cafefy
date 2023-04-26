@@ -6,7 +6,7 @@ export const getTopCafe = async (req, res) => {
 		//then we have to sort the data by the totalRatings
 		.then((cafes) => {
 			//in descending order and get only the top 5 cafes
-			return cafes.sort((a, b) => b.totalRatings - a.totalRatings).slice(0, 5);
+			return cafes.sort((a, b) => b.averageRate - a.averageRate).slice(0, 5);
 		})
 		.catch((err) => {
 			console.error(err);

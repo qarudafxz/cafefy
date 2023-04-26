@@ -73,6 +73,12 @@ const Register = () => {
   return (
     <div>
       <Navbar />
+      <TopLoadingBar
+        color='#8b2801'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+        height={4}
+      />
       <div className="shadow-2xl font-primary xxxsm: flex flex-col m-xxxsm sm:grid grid-cols-2 md:mx-36 xxl:mx-56">
         <img src={CupBg} alt="Cup" className="xxxsm: w-full h-full rounded-t-2xl sm:rounded-t-none rounded-l-3xl"/>
         <div className="xxxsm: bg-white p-4 rounded-b-2xl sm:rounded-b-none rounded-r-3xl p-6 md:p-8 xxl:px-14">

@@ -30,6 +30,7 @@ function Home() {
           color='#8b2801'
           progress={progress}
           onLoaderFinished={() => setProgress(0)}
+          height={4}
         />
         <Navbar />
         <img src={Bg} className="absolute inset-0 object-cover xxxsm:h-max w-full xl:h-4/6"/>
@@ -40,8 +41,9 @@ function Home() {
           <Link to="/cafes" className="text-center hover:bg-[#552b1a] duration-200 xxxsm:mt-4 relative font-primary text-md text-white font-bold bg-secondary py-2 rounded-md sm:w-5/12 md:w-3/12 xxl:w-2/12 py-4">Find Cafes</Link>
         </div>
       </div>
-      <div className="xxxsm: flex flex-col sm:grid grid-cols-2 md:mx-24 xxl:mx-56 grid-flow-col-dense">
-        <TopCafes className="col-span-2"/>
+      <div className="xxxsm: flex flex-col sm:grid grid-cols-2 md:mx-10 lg:mx-56 mt-20">
+        <TopCafes/>
+        <h1 className="text-xl font-bold block text-center text-white border border-[#8b2801] py-4 xsm:hidden">Read article below</h1>
         <div className="xxxsm: mt-32 flex flex-col gap-4">
           <CafeStories />
           <NewsLetter />

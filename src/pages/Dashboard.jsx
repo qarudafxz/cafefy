@@ -9,6 +9,7 @@ import { SESSION_TOKEN } from '../private/sessionToken';
 import TopLoadingBar from 'react-top-loading-bar';
 import LoggedInNavbar from '../components/LoggedInNavbar'
 import Navbar from '../components/Navbar';
+import DashboardTopCafes from '../components/DashboardTopCafes';
 
 function Dashboard() {
   const session_token = SESSION_TOKEN;
@@ -24,6 +25,7 @@ function Dashboard() {
           color='#8b2801'
           progress={progress}
           onLoaderFinished={() => setProgress(0)}
+          height={4}
         />
       <div className="mt-10xxxsm: flex flex-col gap-4 mx-xxxsm font-primary scroll-smooth sm:flex-row gap-10 xl:mx-56 xxl:gap-36" style={{scrollBehavior: "smooth"}}>
         <img src={Illus} className="mt-4 sm:w-5/12 md:w-4/12"/>
@@ -34,6 +36,7 @@ function Dashboard() {
           <p className="xxxsm: text-white text-sm mt-12 xxl:text-xl"><a href="#cafes" className="flex flex-row items-center gap-3 border border-white rounded-full py-2 place-content-center md:w-4/12"><BiMouse /> Click to scroll</a></p>
         </div>
       </div>
+        <DashboardTopCafes setProgress={setProgress}/>
         <h1 className="xxxsm:mx-xxxsm bg-brown text-white font-bold text-xl text-center py-2 px-3 rounded-lg relative xl:text-4xl py-5 top-40 xxl:mx-56">Find cafes near you</h1>
         <Cafes location={location} setProgress={setProgress}/>
       <Footer />
