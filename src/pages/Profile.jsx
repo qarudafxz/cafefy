@@ -8,7 +8,7 @@ import CardSkeletonProfile from '../components/CardSkeletonProfile';
 import { AiFillStar } from 'react-icons/ai';
 import toast, { Toaster } from 'react-hot-toast';
 import { CAFEFY_DEV } from '../private/cafefyDev.js';
-import { SESSION_TOKEN } from '../private/sessionToken.js';
+import { SESSION_TOKEN } from '../helpers/sessionToken.js';
 import TopLoadingBar from 'react-top-loading-bar';
 
 function Profile() {

@@ -5,7 +5,7 @@ import { BiUpload } from 'react-icons/bi';
 import { TbLink } from 'react-icons/tb';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import LoggedInNavbar from '../components/LoggedInNavbar'
-import { SESSION_TOKEN } from '../private/sessionToken';
+import { SESSION_TOKEN } from '../helpers/sessionToken';
 import CupPic from '../assets/cup_bg.png';
 import { getUserID } from '../private/getUserID.js';
 import { buildUrl }from '../utils/buildUrl.js';
