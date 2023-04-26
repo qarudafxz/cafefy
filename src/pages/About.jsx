@@ -7,7 +7,7 @@ import LoggedInNavbar from '../components/LoggedInNavbar';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-import { SESSION_TOKEN } from '../private/sessionToken'
+import { SESSION_TOKEN } from '../helpers/sessionToken.js'
 
 function About() {
   const [ progress, setProgress ] = useState(0);

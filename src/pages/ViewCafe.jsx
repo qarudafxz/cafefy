@@ -6,7 +6,7 @@ import LoggedInNavbar from '../components/LoggedInNavbar';
 import Navbar from '../components/Navbar'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'; 
 import { IoLocationSharp } from 'react-icons/io5'
-import { SESSION_TOKEN } from '../private/sessionToken.js';
+import { SESSION_TOKEN } from '../helpers/sessionToken.js';
 import CardSkeleton from '../components/CardSkeleton';
 import { getUserId } from '../helpers/getUserId.js';
 import TopLoadingBar from 'react-top-loading-bar';

@@ -64,10 +64,12 @@ function Profile() {
           }}/>
           <img src={userDeets.profilePic} className="relative rounded-full border-[10px] border-[#131313] h-full m-auto xxxsm:w-32 top-[58px] sm:w-44 top-[70px] md:w-52 top-[74px]"/>
           <div className="mt-32 sm:mt-36">
-            <div className="flex flex-row gap-4 place-content-center">
-              <Link to="/profile/edit" className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-5 py-2 rounded-full hover:bg-[#552b1a] duration-150"><AiFillEdit />Edit Profile</Link>
-              <button to="" className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full hover:bg-[#552b1a] duration-150" onClick={copyProfile}><AiFillProfile />Share Profile</button>
+            { session_token && (
+              <div className="flex flex-row gap-4 place-content-center">
+                <Link to="/profile/edit" className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-5 py-2 rounded-full hover:bg-[#552b1a] duration-150"><AiFillEdit />Edit Profile</Link>
+                <button to="" className="flex flex-row gap-2 items-center bg-brown text-white font-medium px-4 py-2 rounded-full hover:bg-[#552b1a] duration-150" onClick={copyProfile}><AiFillProfile />Share Profile</button>
             </div>
+            )}
             <div className="font-primary xxxsm: flex flex-col gap-6 mt-12 m-xxxsm">
               <h1 className="xxxsm: text-white text-3xl font-bold text-center md:text-5xl">{userDeets.firstName + " " + userDeets.lastName}</h1>
               { userDeets._id == dev && <h1 className="m-auto font-bold text-white border border-[#8b2801] rounded-full flex gap-3 items-center place-content-center xxxsm:w-full sm:w-6/12 lg:w-5/12 xl:w-3/12" id="color"><img src="https://camo.githubusercontent.com/f7bd518a92e1206f7dd3cd5f16dabadb3df596b48ad7c44baae5a930f643c228/68747470733a2f2f63756c746f667468657061727479706172726f742e636f6d2f666c6167732f68642f6972616e706172726f742e676966" className="xxxsm:w-8 mb-2"/>Cafefy Dev</h1>}

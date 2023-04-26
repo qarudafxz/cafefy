@@ -124,9 +124,9 @@ function EditProfile() {
             </div>
           </div>
           <h1 className="text-white font-bold text-md xl:text-2xl">Change Background Picture</h1>
-          <input type="text" onChange={(e) => setBgCover(e.target.value)} className="focus:outline-none p-2 rounded-md"></input>
+          <input type="text" onChange={(e) => setBgCover(e.target.value)} placeholder="Input Background URL" className="focus:outline-none p-2 rounded-md"></input>
           <h1 className="text-white font-bold text-md xl:text-2xl">Change Bio</h1>
-          <textarea type="text" onChange={(e) => setBio(e.target.value)} className="focus:outline-none p-4 rounded-md xl:h-52"></textarea>
+          <textarea type="text" onChange={(e) => setBio(e.target.value)} placeholder="Input Bio (maximum of 50 tokens)" className="focus:outline-none p-4 rounded-md xl:h-52"></textarea>
           <button className="bg-brown py-2 px-4 rounded-full text-white font-bold xl:text-3xl mt-28" onClick={editProfile}>Update my profile</button>
         </div>
         <img src={CupPic} alt="Cafefy Cup" className="xxxsm:hidden md:block w-6/12"/>

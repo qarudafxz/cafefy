@@ -4,7 +4,7 @@ import Illus from '../assets/illus.svg';
 import { BiMouse } from 'react-icons/bi';
 import Cafes from '../components/Cafes';
 import Footer from '../components/Footer'
-import { SESSION_TOKEN } from '../private/sessionToken';
+import { SESSION_TOKEN } from '../helpers/sessionToken';
 
 import TopLoadingBar from 'react-top-loading-bar';
 import LoggedInNavbar from '../components/LoggedInNavbar'

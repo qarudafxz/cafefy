@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { disableReactDevtools } from '@fvilers/disable-react-devtools';
 
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -11,6 +12,8 @@ import Rate from './pages/Rate';
 import ViewUserProfile from './pages/ViewUserProfile';
 import EditProfile from './pages/EditProfile';
 import About from './pages/About';
+
+if (process.env.NODE_ENV === 'production') disableReactDevtools();
 
 const App = () => {
   return (

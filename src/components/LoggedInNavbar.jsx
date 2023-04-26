@@ -67,7 +67,7 @@ const LoggedInNavbar = () => {
             <Link to="/about" className="font-semibold hover:text-brown duration-150">About</Link>
           
             { !isLoaded ? (
-              <div className="flex flex-row gap-8 items-center border border-[#8b2801] py-2 px-4 rounded-md">
+              <div className="flex flex-row gap-8 items-center border border-[#8b2801] py-2 px-4 rounded-md hover:bg-[#8b2801] duration-300">
                 <Link to={{
                 pathname: `/profile/${userID}`,
                 state: { userID: userID }

@@ -4,7 +4,7 @@ import LoggedInNavbar from '../components/LoggedInNavbar'
 import StarRating from '../components/StarRating'
 import { getUserId } from '../helpers/getUserId.js';
 import { buildUrl } from '../utils/buildUrl.js';
-import { SESSION_TOKEN } from '../private/sessionToken';
+import { SESSION_TOKEN } from '../helpers/sessionToken';
 import { HiOutlinePencilAlt } from 'react-icons/hi';
 import Footer from '../components/Footer';
 
