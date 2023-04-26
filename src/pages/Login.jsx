@@ -6,7 +6,7 @@ import { AiFillEyeInvisible } from 'react-icons/ai';
 import { buildUrl } from '../utils/buildUrl.js';
 import Footer from '../components/Footer';
 import TopLoadingBar from 'react-top-loading-bar';
-import { SESSION_TOKEN } from '../private/sessionToken';
+import { SESSION_TOKEN } from '../private/sessionToken.js';
 
 const Login = () => {
   const [ isVisible, setIsVisible ] = useState(false);
