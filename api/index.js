@@ -23,7 +23,7 @@ app.use(
 	cors({
 		origin: "*",
 		method: ["GET", "POST"],
-		credentials: true,
+		// credentials: true,
 	})
 );
 app.use(morgan("tiny"));
