@@ -6,7 +6,7 @@ import { AiFillEyeInvisible } from 'react-icons/ai';
 import { buildUrl } from '../utils/buildUrl.js';
 import Footer from '../components/Footer';
 import TopLoadingBar from 'react-top-loading-bar';
-import { SESSION_TOKEN } from '../helpers/sessionToken.js';
+import { googleSignUp } from '../helpers/googleSignUp.js';
 
 const Login = () => {
   const [ isVisible, setIsVisible ] = useState(false);
@@ -15,7 +15,6 @@ const Login = () => {
   const [ password, setPassword ] = useState("");
   const [ loginMessage, setLoginMessage ] = useState("");
   const location = useLocation();
-  const session_token = SESSION_TOKEN;
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -56,7 +55,6 @@ const Login = () => {
       throw new Error(e)
     }
   };
-  
 
   const togglePasswordVisibility = (e) => {
     e.preventDefault();
@@ -76,10 +74,31 @@ const Login = () => {
     }, 1000)
   },[location])
 
-  useEffect(()=> {
-    if(session_token)
-      window.location.href = '/cafes';
-  },[])
+  useEffect(() => {
+    if (window.google) {
+      google.accounts.id.initialize({
+        client_id: "922739528134-5sm434ao0nh0hbkdgq6h6215n1dno8sh.apps.googleusercontent.com",
+        callback: googleSignUp,
+      });
+
+      google.accounts.id.renderButton(document.getElementById("google-button"), {
+        theme: "outline",
+        size: "large",
+        text: "continue_with",
+        shape: "rectangular",
+        width: `${window.innerWidth >= 275 && window.innerWidth <= 375 ? 245 
+          : window.innerWidth > 375 && window.innerWidth <= 425 ? 250 
+          : window.innerWidth > 425 && window.innerWidth <= 1024 ? 295 
+          : window.innerWidth > 1024 && window.innerWidth <= 1440 ? 350 
+          : window.innerWidth > 1440 && window.innerWidth <= 2560 ? 400 : 450
+        }`,
+        height: "50",
+        longtitle: "true",
+        onsuccess: googleSignUp,
+        onfailure: googleSignUp,
+      });
+    }
+  }, [])
 
   return (
     <div>
@@ -119,6 +138,12 @@ const Login = () => {
                 <IoEyeSharp className="absolute right-3 top-2 text-xl cursor-pointer text-[#b9b9b9] sm:top-3" />
               )}
             </button>
+            <div className="flex flex-row items-center place-content-center my-8">
+              <hr className="w-5/12 border-[#505050] "/>
+              <p className="px-10 text-[#505050] text-sm">OR</p>
+              <hr className="w-5/12 border-[#505050] "/>
+            </div>
+            <button id="google-button"></button>
             <button type="submit" className="w-full bg-brown py-2 px-4 rounded-lg mt-10 font-extrabold text-white hover:bg-[#552b1a] duration-200 sm:text-xl mt-20 xxl:mt-32">Login</button>
             <p className="font-primary text-xs text-white mt-4 text-center sm:text-base">Don't have an account <span className="font-primary italic underline text-cream font-bold"><Link to="/auth/register">Create one</Link></span></p>
           </div>

@@ -89,7 +89,7 @@ function Profile() {
               !userDeets.rates || userDeets.rates.length === 0 ? (
                 <div className="xxxsm: flex flex-col gap-2 text-center mt-24 mx-xxxsm">
                   <p className="xxxsm: text-3xl font-bold text-white">No ratings yet!</p>
-                  <Link to="/cafes" className="xxxsm: border-2 border-brown rounded-full py-2 text-white font-bold cursor-pointer">Rate Now</Link>
+                  { session_token && <Link to="/cafes" className="mt-2 xxxsm: border-2 border-brown rounded-full py-2 text-white font-bold cursor-pointer m-auto w-full sm:w-6/12 lg:w-5/12 xl:w-3/12">Rate Now</Link>}
                 </div>
               ) : (
                 <div className="mt-14">

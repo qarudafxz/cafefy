@@ -63,7 +63,7 @@ const LoggedInNavbar = () => {
          <div className="xxxsm:hidden md:flex flex-row gap-4 font-primary text-white items-center sm:text-xs lg:text-lg gap-7">
             <input type="text" placeholder='Search cafes' className="py-2 pl-6 rounded-xl focus:outline-none bg-transparent border border-white font-primary text-white"/>
             <Link to="/cafes" className="font-semibold hover:text-brown duration-150">Cafes</Link>
-            <Link to="" className="font-semibold hover:text-brown duration-150">Favourite Cafes</Link>
+            <Link to="/cafes/favorite_cafes" className="font-semibold hover:text-brown duration-150">Favourite Cafes</Link>
             <Link to="/about" className="font-semibold hover:text-brown duration-150">About</Link>
           
             { !isLoaded ? (
@@ -135,7 +135,7 @@ const LoggedInNavbar = () => {
                   </div>
                   <div className="flex flex-row items-center">
                     <AiFillHeart className="text-xl mr-2" />
-                    <Link to="/cafes">Favourite Cafes</Link>
+                    <Link to="/cafes/favoriteCafes">Favourite Cafes</Link>
                   </div>
                   <div className="flex flex-row items-center">
                     <HiInformationCircle className="text-xl mr-2" />

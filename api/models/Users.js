@@ -19,7 +19,11 @@ const UserSchema = new mongoose.Schema(
 			required: false,
 			default: "https://wallpapercave.com/wp/wp11903179.jpg",
 		},
-		bio: { type: String, required: false, default: "" },
+		bio: {
+			type: String,
+			required: false,
+			default: "",
+		},
 		faveCafes: [
 			{
 				cafeId: {
