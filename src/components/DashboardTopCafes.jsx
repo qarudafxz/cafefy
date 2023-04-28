@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import { fetchTopCafes } from '../lib/fetchTopCafes';
 import CardSkeleton from './CardSkeleton';
 import { AiFillStar } from 'react-icons/ai'
 import { AiOutlineStar } from 'react-icons/ai'
 import { FaUsers } from 'react-icons/fa';
+import { FiArrowUpRight } from 'react-icons/fi';
 import { Carousel } from 'react-responsive-carousel'; 
 
 function DashboardTopCafes() {
@@ -33,9 +35,22 @@ function DashboardTopCafes() {
               {
                 sortCafes.map((cafe, index) => {
                   return (
-                    <div key={index}>
+                    <Link 
+                      to={`/cafe/${cafe.name}/${cafe._id}`} 
+                      state={{ cafeID: cafe._id}}
+                      key={index}
+                    >
                       <div className="bg-white rounded-md xxxsm:p-4">
-                        <img src={cafe.image} alt={cafe.name} className="w-full h-64 object-cover"/>
+                        <div className="relative group">
+                          <img src={cafe.image} className="w-full h-48 object-cover" alt={cafe.name}/>
+                          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button className="bg-brown px-4 py-2 rounded-full flex items-center gap-1">
+                              <span className="font-bold text-white">View Cafe</span>
+                              <FiArrowUpRight className="text-white"/>
+                            </button>
+                          </div>
+                        </div>
                         <div className="flex flex-row justify-between mt-10">
                           <h1 className="font-bold md:text-2xl">{cafe.name}</h1>
                             <div className="flex flex-row items-center xxxsm:gap-2 xsm:gap-4 sm:gap-5 md:gap-6">
@@ -64,7 +79,7 @@ function DashboardTopCafes() {
                         </div>
                         <p className="mt-2">{cafe.address}</p>
                       </div>
-                    </div>
+                    </Link>
                   )
                 })
               }
