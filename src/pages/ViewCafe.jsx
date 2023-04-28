@@ -106,9 +106,9 @@ function ViewCafe() {
                                 <div className="flex flex-row gap-4">
                                   <Link to={`/users/${rate.userId}`} className="xxxsm: w-3/12 md:w-20"><img src={rate.userImage} className="rounded-full"/></Link>
                                   <div className="flex flex-col">
-                                    <div className="flex flex-row justify-between gap-4">
+                                    <div className="flex xxxsm:flex-col md:flex-row justify-between gap-1">
                                       <h1 className="xxxsm:font-bold text-primary text-sm md:text-xl">{rate.userName}</h1>
-                                      { rate.userId === dev && <div className="text-xs text-[#6d6d6d] border border-1 rounded-md py-1 px-3 flex flex-row gap-2 items-center cursor-help"><img src={Cup} className="w-4"/>Dev</div>}
+                                      { rate.userId === dev && <div className="text-xs text-[#6d6d6d] border border-1 rounded-md py-1 px-3 flex flex-row gap-2 items-center cursor-help mb-2"><img src={Cup} className="w-4"/>Dev</div>}
                                     </div>
                                     <div className="flex flex-row gap-1 items-center">
                                       <h1 className="text-xs md:text-xl">{rate.rate}</h1>
