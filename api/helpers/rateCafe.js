@@ -50,7 +50,9 @@ export const rateCafe = async (req, res) => {
 			date: new Date(),
 		}); // add the new rate and comment to the cafe's ratings array
 		cafe.numberOfRaters += 1; // increment the number of raters for the cafe
-		cafe.averageRate = (cafe.averageRate + rate) / cafe.numberOfRaters; // calculate the new average rating for the cafe
+		cafe.averageRate =
+			(cafe.averageRate * cafe.numberOfRaters + rate) /
+			(cafe.numberOfRaters + 1); // calculate the new average rating for the cafe
 		await cafe.save(); // save the cafe document to the database
 
 		res.json({ cafe, user }); // return a success response with the updated cafe and user documents
