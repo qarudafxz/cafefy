@@ -59,7 +59,7 @@ const App = () => {
             element={<About />} 
           />
           <Route 
-            path="/cafes/favoriteCafes"
+            path="/cafes/favorite_cafes"
             element={<FavoriteCafe />}
           />
         </Routes>

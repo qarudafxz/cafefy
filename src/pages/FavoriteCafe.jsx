@@ -13,6 +13,7 @@ function FavoriteCafe() {
   return (
     <div>
       <LoggedInNavbar />
+      <h1 className="text-white font-primary text-4xl font-extrabold text-center mt-52">PAGE UNDER CONSTRUCTION</h1>
     </div>
   )
 }

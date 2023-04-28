@@ -3,6 +3,7 @@ import { fetchTopCafes } from '../lib/fetchTopCafes';
 import CardSkeleton from './CardSkeleton';
 import { AiFillStar } from 'react-icons/ai'
 import { AiOutlineStar } from 'react-icons/ai'
+import { FaUsers } from 'react-icons/fa';
 import { Carousel } from 'react-responsive-carousel'; 
 
 function DashboardTopCafes() {
@@ -37,22 +38,28 @@ function DashboardTopCafes() {
                         <img src={cafe.image} alt={cafe.name} className="w-full h-64 object-cover"/>
                         <div className="flex flex-row justify-between mt-10">
                           <h1 className="font-bold md:text-2xl">{cafe.name}</h1>
-                            <div className="flex flex-row gap-3 items-center">
-                              <h1 className="text-brown font-semibold">{cafe?.averageRate.toFixed(1)}</h1>
-                              {
-                                (() => {
-                                  const stars = [];
-                                  const rating = Math.floor(cafe.averageRate);
-                                  for(let i = 0; i < rating; i++) {
-                                    stars.push(<AiFillStar key={i} />);
-                                  }
-        
-                                  for(let i = rating; i < 5; i++) {
-                                    stars.push(<AiOutlineStar key={i} className="text-brown"/>);
-                                  }
-                                  return <div className="flex flex-row">{stars.map((star, index) => <span className="text-brown" key={index}>{star}</span>)}</div>;
-                                })()
-                              }
+                            <div className="flex flex-row items-center xxxsm:gap-2 xsm:gap-4 sm:gap-5 md:gap-6">
+                              <div className="flex flex-row gap-2 items-center">
+                                <FaUsers size={24}/>
+                                <h1 className="font-bold">{cafe.numberOfRaters}</h1>
+                              </div>
+                              <div className="flex flex-row gap-2 items-center">
+                                <h1 className="text-brown font-semibold">{cafe?.averageRate.toFixed(1)}</h1>
+                                {
+                                  (() => {
+                                    const stars = [];
+                                    const rating = Math.floor(cafe.averageRate);
+                                    for(let i = 0; i < rating; i++) {
+                                      stars.push(<AiFillStar key={i} />);
+                                    }
+          
+                                    for(let i = rating; i < 5; i++) {
+                                      stars.push(<AiOutlineStar key={i} className="text-brown"/>);
+                                    }
+                                    return <div className="flex flex-row">{stars.map((star, index) => <span className="text-brown" key={index}>{star}</span>)}</div>;
+                                  })()
+                                }
+                              </div>
                           </div>
                         </div>
                         <p className="mt-2">{cafe.address}</p>
