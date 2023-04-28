@@ -1,7 +1,7 @@
 import express from "express";
 import { getName } from "../helpers/getName.js";
-import { getUserById } from "../helpers/getUserByID.js";
 import { editProfile } from "../controllers/editProfile.js";
+import { getUserById } from "../helpers/getUserById.js";
 
 const router = express.Router();
 
