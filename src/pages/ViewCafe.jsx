@@ -10,6 +10,8 @@ import { SESSION_TOKEN } from '../helpers/sessionToken.js';
 import CardSkeleton from '../components/CardSkeleton';
 import { getUserId } from '../helpers/getUserId.js';
 import TopLoadingBar from 'react-top-loading-bar';
+import { CAFEFY_DEV } from '../private/cafefyDev.js';
+import Cup from '../assets/icon.png';
 
 function ViewCafe() {
   const [ isLoading, setIsLoading ] = useState(false);
@@ -20,6 +22,7 @@ function ViewCafe() {
   const userID = getUserId();
   const [ disableBtn, setDisableBtn ] = useState(false);
   const location = useLocation;
+  const dev = CAFEFY_DEV;
 
   const getCafeDetails = async () => {
     // setIsLoading(true);
@@ -103,7 +106,10 @@ function ViewCafe() {
                                 <div className="flex flex-row gap-4">
                                   <Link to={`/users/${rate.userId}`} className="xxxsm: w-3/12 md:w-20"><img src={rate.userImage} className="rounded-full"/></Link>
                                   <div className="flex flex-col">
-                                    <h1 className="xxxsm:font-bold text-primary text-sm md:text-xl">{rate.userName}</h1>
+                                    <div className="flex flex-row justify-between gap-4">
+                                      <h1 className="xxxsm:font-bold text-primary text-sm md:text-xl">{rate.userName}</h1>
+                                      { rate.userId === dev && <div className="text-xs text-[#6d6d6d] border border-1 rounded-md py-1 px-3 flex flex-row gap-2 items-center cursor-help"><img src={Cup} className="w-4"/>Dev</div>}
+                                    </div>
                                     <div className="flex flex-row gap-1 items-center">
                                       <h1 className="text-xs md:text-xl">{rate.rate}</h1>
                                       {

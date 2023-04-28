@@ -54,12 +54,36 @@ body::-webkit-scrollbar-thumb {
 
 @keyframes changeColor {
   0% {
-    color: #8b2801;
+    color: red;
+  }
+  10% {
+    color: orangered;
+  }
+  20% {
+    color: yellow;
+  }
+  30% {
+    color: greenyellow;
+  }
+  40% {
+    color: green;
   }
   50% {
-    color: #ff0000;
+    color: blue;
+  }
+  60% {
+    color: blueviolet;
+  }
+  70% {
+    color: plum;
+  }
+  80% {
+    color: pink;
+  }
+  90% {
+    color: orangered;
   }
   100% {
-    color: #8b2801;
+    color: red;
   }
 }
