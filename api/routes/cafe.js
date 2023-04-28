@@ -1,10 +1,12 @@
 import express from "express";
-import { rateCafe } from "../helpers/rateCafe.js";
-import { createCafe } from "../controllers/createCafe.js";
-import { getTopCafe } from "../controllers/getTopCafe.js";
-import { getCafe } from "../controllers/getCafe.js";
-import { getAllCafes } from "../controllers/getAllCafes.js";
-import { faveCafe } from "../controllers/faveCafe.js";
+import {
+	rateCafe,
+	createCafe,
+	getTopCafe,
+	getCafe,
+	getAllCafes,
+	faveCafe,
+} from "../controllers/cafeSettings.js";
 
 const router = express.Router();
 

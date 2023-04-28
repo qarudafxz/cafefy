@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-
 import { UserModel } from "../models/Users.js";
 
 //create user
@@ -71,3 +70,40 @@ export const login = async (req, res) => {
 
 //generate On time password
 export const generateOTP = async (req, res) => {};
+
+const googleLogin = (user, res) => {
+	const token = jwt.sign({ userID: user._id }, "secret");
+	res.status(200).json({ token, user });
+};
+
+//check if the user is authenticated using google login
+export const checkGoogleUser = async (req, res) => {
+	const { firstName, lastName, email, password, profilePic } = req.body;
+	try {
+		let user = await UserModel.findOne({ email });
+
+		//if user doesn't exist, add the gmail account in the database
+		if (!user) {
+			try {
+				user = new UserModel({
+					firstName,
+					lastName,
+					email,
+					password: await bcrypt.hash(password, 10),
+					profilePic,
+					bio: `👋 Nice to meet you here on Cafefy! I'm ${firstName} ${lastName}`,
+				});
+
+				await user.save();
+				googleLogin(user, res);
+			} catch (err) {
+				console.log(err);
+			}
+		}
+
+		//if user exists, log the user in
+		googleLogin(user, res);
+	} catch (err) {
+		console.log(err);
+	}
+};

@@ -1,6 +1,86 @@
 import { CafeModel } from "../models/Cafes.js";
 import { UserModel } from "../models/Users.js";
 
+//get all cafes
+export const getAllCafes = async (req, res) => {
+	try {
+		const cafe = await CafeModel.find({});
+		return res.status(200).json(cafe);
+	} catch (err) {
+		return res.status(404).json({ message: "Error fetching data" });
+	}
+};
+
+//get the top 5 cafes
+export const getTopCafe = async (req, res) => {
+	//we have to traverse first all the data inside the database
+	const topCafes = await CafeModel.find({}, null, { timeout: 80000 })
+		//then we have to sort the data by the totalRatings
+		.then((cafes) => {
+			//in descending order and get only the top 5 cafes
+			return cafes.sort((a, b) => b.averageRate - a.averageRate).slice(0, 5);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).json({ message: "Internal server error" });
+		});
+	res.json(topCafes);
+};
+
+//get specific cafe
+export const getCafe = async (req, res) => {
+	try {
+		const cafe = await CafeModel.findById(req.params.id);
+		if (!cafe) return res.status(404).json({ message: "Could'nt find cafe" });
+		return res.status(200).json(cafe);
+	} catch (err) {
+		return res.status(400).json({ message: "Couldn't retrieve cafe" });
+	}
+};
+
+//create cafe
+export const createCafe = async (req, res) => {
+	const { name, desc, address, logo, image } = req.body;
+	const cafe = await CafeModel.findOne({ name });
+	if (cafe) res.status(404).json({ message: "Cafe already exists" });
+
+	try {
+		const newCafe = new CafeModel({
+			name,
+			desc,
+			address,
+			logo,
+			image,
+		});
+		await newCafe.save();
+		res.json(newCafe);
+	} catch (err) {
+		return res.status(401).json({ err, message: "Something went wrong" });
+	}
+};
+
+//favourite a cafe
+export const faveCafe = async (req, res) => {
+	try {
+		const cafe = await CafeModel.findById(req.params.id);
+		if (!cafe) return res.status(404).json({ message: "Cafe not found" });
+
+		const user = await UserModel.find({ userID: req.body });
+
+		user.faveCafes.push({
+			cafeId: cafe._id,
+			cafeName: cafe.name,
+			cafeLogo: cafe.logo,
+		});
+
+		await user.save();
+		return res.status(200).json({ message: "Cafe added to favorites" });
+	} catch (err) {
+		return res.status(404).json({ message: err });
+	}
+};
+
+//rate a cafe
 export const rateCafe = async (req, res) => {
 	try {
 		//I have to get the user id from the request user object

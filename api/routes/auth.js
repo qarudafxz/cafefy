@@ -4,9 +4,9 @@ import {
 	login,
 	authenticate,
 	generateOTP,
+	checkGoogleUser,
 } from "../controllers/auth.js";
 
-import { checkGoogleUser } from "../controllers/checkGoogleUser.js";
 import { checkAuthentication } from "../middlewares/checkAuthentication.js";
 
 const router = express.Router();
