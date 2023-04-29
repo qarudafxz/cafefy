@@ -5,11 +5,13 @@ import GridCardSkeleton from "./GridCardSkeleton";
 import { IoLocationSharp } from "react-icons/io5";
 import { FiArrowUpRight } from "react-icons/fi";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { SESSION_TOKEN } from "../helpers/sessionToken.js";
 
 function Cafes({ location, setProgress }) {
 	const [cafeData, setCafeData] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isClicked, setIsClicked] = useState({});
+	const session_token = SESSION_TOKEN;
 
 	const fetchData = async () => {
 		setIsLoading(true);
@@ -124,12 +126,14 @@ function Cafes({ location, setProgress }) {
 											className='text-primary font-bold text-2xl'>
 											{cafe.name}
 										</Link>
-										<LikeComponent
-											id={cafe._id}
-											onClick={() => handleFaveCafe(cafe._id)}
-											className='cursor-pointer'
-											size={24}
-										/>
+										{session_token && (
+											<LikeComponent
+												id={cafe._id}
+												onClick={() => handleFaveCafe(cafe._id)}
+												className='cursor-pointer'
+												size={24}
+											/>
+										)}
 									</div>
 									<p className='text-black text-xs font-semibold tracking-wide leading-4 text-ellipsis whitespace-nowrap overflow-hidden'>
 										{cafe.desc}
