@@ -77,7 +77,7 @@ const Login = () => {
   useEffect(() => {
     if (window.google) {
       google.accounts.id.initialize({
-        client_id: "922739528134-5sm434ao0nh0hbkdgq6h6215n1dno8sh.apps.googleusercontent.com",
+        client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
         callback: googleSignUp,
       });
 
