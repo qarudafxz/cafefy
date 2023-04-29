@@ -18,6 +18,22 @@ function Cafes({ location, setProgress }) {
 		try {
 			const response = await fetch(buildUrl("/cafes/"), {
 				method: "GET",
+			})
+				.then((response) => response.json())
+				.then((data) => setCafeData(data));
+
+			setIsClicked(favorites);
+			setCafeData(response.json());
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	const fetchDataIfLoggedIn = async () => {
+		setIsLoading(true);
+		try {
+			const response = await fetch(buildUrl("/cafes/"), {
+				method: "GET",
 			});
 
 			const data = await response.json();
@@ -86,6 +102,10 @@ function Cafes({ location, setProgress }) {
 			setProgress(100);
 		}, 1000);
 	}, [location]);
+
+	useEffect(() => {
+		if (session_token) fetchDataIfLoggedIn();
+	}, [session_token]);
 
 	return (
 		<div>
