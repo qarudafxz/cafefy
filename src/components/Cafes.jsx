@@ -16,9 +16,10 @@ function Cafes({ location, setProgress }) {
 	const fetchData = async () => {
 		setIsLoading(true);
 		try {
-			const response = await fetch(buildUrl("/"), {
+			const response = await fetch(buildUrl("/cafes/"), {
 				method: "GET",
 			});
+
 			const data = await response.json();
 
 			const getFavCafes = async () =>
