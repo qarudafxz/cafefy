@@ -1,1 +1,1 @@
-export const SESSION_TOKEN = sessionStorage.getItem("token");
+export const SESSION_TOKEN = localStorage.getItem("token");

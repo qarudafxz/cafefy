@@ -34,10 +34,10 @@ const LoggedInNavbar = () => {
   }
 
   const toggleLogout = () => {
-    sessionStorage.removeItem('token')
-    sessionStorage.removeItem('token_expiration')
-    sessionStorage.removeItem('user')
-    sessionStorage.removeItem('userID')
+    localStorage.removeItem('token')
+    localStorage.removeItem('token_expiration')
+    localStorage.removeItem('user')
+    localStorage.removeItem('userID')
     window.location.reload();
   }
 

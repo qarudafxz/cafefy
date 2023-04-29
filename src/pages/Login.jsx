@@ -42,10 +42,10 @@ const Login = () => {
   
       if (data.message === "User logged in successfully") {
         const token_expiration = new Date().getTime() + 5 * 60 * 1000; // 5 minutes
-        sessionStorage.setItem('token', data.token);
-        sessionStorage.setItem('token_expiration', token_expiration);
-        sessionStorage.setItem('user', JSON.stringify(data.username));
-        sessionStorage.setItem('userID', data.userID);
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('token_expiration', token_expiration);
+        localStorage.setItem('user', JSON.stringify(data.username));
+        localStorage.setItem('userID', data.userID);
   
         window.location.href = '/cafes';
       } else {

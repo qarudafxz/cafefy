@@ -16,7 +16,7 @@ function Dashboard() {
   const [ progress, setProgress ] = useState(0);
 
   const location = useLocation();
-  const username = sessionStorage.getItem('user');
+  const username = localStorage.getItem('user');
   
   return (
     <div>

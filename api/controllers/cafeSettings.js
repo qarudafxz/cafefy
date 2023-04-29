@@ -141,3 +141,43 @@ export const rateCafe = async (req, res) => {
 		res.status(500).json({ message: "Internal server error" }); // return a generic error response for any other errors
 	}
 };
+
+export const faveCafes = async (req, res) => {
+	try {
+		const user = await UserModel.findById(req.body.user_id);
+		return res.json(user.faveCafes);
+	} catch (err) {
+		return res.status(500).json({ message: "Internal server error" }); // return a generic error response for any other errors
+	}
+};
+
+export const addRemoveFavCafes = async (req, res) => {
+	try {
+		const user = await UserModel.findById(req.body.user_id);
+
+		if (!user) {
+			throw new Error("User not found", { cause: { code: 404 } });
+		}
+
+		if (req.body.is_deleting) {
+			user.faveCafes = user.faveCafes.filter(
+				(cafe) => cafe.cafeId._id.toString() !== req.body.cafe_id
+			);
+		} else {
+			user.faveCafes.push({
+				cafeId: req.body.cafe_id,
+			});
+		}
+
+		await user.save();
+
+		return res.status(204).end();
+	} catch (err) {
+		console.log(err);
+		if (err.code === 404) {
+			return res.status(404).json({ message: "User not found" });
+		}
+
+		return res.status(500).json({ message: "Internal server error" }); // return a generic error response for any other errors
+	}
+};

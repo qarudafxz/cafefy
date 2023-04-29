@@ -21,13 +21,13 @@ export const googleSignUp = async (response) => {
 			.then((res) => res.json())
 			.then((data) => {
 				const token_expiration = new Date().getTime() + 5 * 60 * 1000; // 5 minutes
-				sessionStorage.setItem("token", data.token);
-				sessionStorage.setItem("token_expiration", token_expiration);
-				sessionStorage.setItem(
+				localStorage.setItem("token", data.token);
+				localStorage.setItem("token_expiration", token_expiration);
+				localStorage.setItem(
 					"user",
 					JSON.stringify(`${data.user.firstName} ${data.user.lastName}`)
 				);
-				sessionStorage.setItem("userID", data.user._id);
+				localStorage.setItem("userID", data.user._id);
 				setTimeout(() => {
 					window.location.href = "/cafes";
 				}, 1500);
