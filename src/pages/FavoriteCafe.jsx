@@ -15,6 +15,7 @@ function FavoriteCafe() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [isClicked, setIsClicked] = useState({});
 
+	//fetching data
 	const fetchData = async () => {
 		setIsLoading(true);
 		try {
