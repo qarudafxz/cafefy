@@ -94,7 +94,7 @@ function FavoriteCafe() {
 	}, []);
 
 	return (
-		<div>
+		<div className='mb-10'>
 			<LoggedInNavbar />
 			<h1 className='font-primary font-bold text-white mt-10 mx-xxxsm xxxsm:text-3xl md:mx-56 lg:text-5xl'>
 				Favourite Cafes

@@ -119,7 +119,7 @@ function Cafes({ location, setProgress }) {
 						return (
 							<div
 								key={cafe._id}
-								className='xxxsm: flex flex-col gap-4 bg-white rounded-md p-4 md:p-6 hover:bg-[#ebebeb] hover:scale-105 duration-200 '>
+								className='xxxsm: flex flex-col gap-4 bg-white rounded-md p-4 md:p-6 hover:bg-[#ebebeb] border border-black hover:scale-105 duration-200'>
 								<Link
 									to={`/cafe/${cafe.name}/${cafe._id}`}
 									state={{ cafeID: cafe._id }}
