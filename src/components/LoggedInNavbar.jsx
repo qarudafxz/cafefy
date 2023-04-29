@@ -53,13 +53,22 @@ const LoggedInNavbar = () => {
 						scale: 1.19,
 						transition: { duration: 0.4 },
 					}}>
-					<Link to='/cafes'>
-						<img
-							src={Logo}
-							alt='logo'
-							className='xxxsm:w-25 h-6'
-						/>
-					</Link>
+					<motion.div
+						initial={{ opacity: 0, scale: 0.5 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{
+							duration: 0.8,
+							delay: 0.9,
+							ease: [0, 0.71, 0.2, 1.01],
+						}}>
+						<Link to='/cafes'>
+							<img
+								src={Logo}
+								alt='logo'
+								className='xxxsm:w-25 h-6'
+							/>
+						</Link>
+					</motion.div>
 				</motion.div>
 				<button
 					onClick={() => setIsNavbarClicked(!isNavbarClicked)}
@@ -102,12 +111,21 @@ const LoggedInNavbar = () => {
 								}}>
 								<h1 className='font-extrabold'>{userDeets.firstName}</h1>
 							</Link>
-							<img
-								src={userDeets.profilePic}
-								alt={userDeets.firstName + " " + userDeets.lastName}
-								className='w-11 rounded-full cursor-pointer'
-								onClick={() => setIsDropDownClicked(!isDropDownClicked)}
-							/>
+							<motion.div
+								initial={{ opacity: 0, scale: 0.5 }}
+								animate={{ opacity: 1, scale: 1 }}
+								transition={{
+									duration: 0.8,
+									delay: 0.9,
+									ease: [0, 0.71, 0.2, 1.01],
+								}}>
+								<img
+									src={userDeets.profilePic}
+									alt={userDeets.firstName + " " + userDeets.lastName}
+									className='w-11 rounded-full cursor-pointer'
+									onClick={() => setIsDropDownClicked(!isDropDownClicked)}
+								/>
+							</motion.div>
 						</div>
 					) : (
 						<h1 className='flex flex-row gap-8 items-center border border-[#8b2801] py-2 px-4 rounded-md'>

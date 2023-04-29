@@ -6,6 +6,7 @@ import { IoLocationSharp } from "react-icons/io5";
 import { FiArrowUpRight } from "react-icons/fi";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { SESSION_TOKEN } from "../helpers/sessionToken.js";
+import { motion } from "framer-motion";
 
 function Cafes({ location, setProgress }) {
 	const [cafeData, setCafeData] = useState([]);
@@ -69,7 +70,10 @@ function Cafes({ location, setProgress }) {
 		return isClicked[id] ? (
 			<AiFillHeart {...props} />
 		) : (
-			<AiOutlineHeart {...props} />
+			<AiOutlineHeart
+				{...props}
+				className='hover:scale-125 duration-300 cursor-pointer'
+			/>
 		);
 	};
 
@@ -117,7 +121,10 @@ function Cafes({ location, setProgress }) {
 					id='cafes'>
 					{cafeData?.map((cafe) => {
 						return (
-							<div
+							<motion.div
+								initial={{ opacity: 0, y: 50 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.5 }}
 								key={cafe._id}
 								className='xxxsm: flex flex-col gap-4 bg-white rounded-md p-4 md:p-6 hover:bg-[#ebebeb] border border-black hover:scale-105 duration-200'>
 								<Link
@@ -167,7 +174,7 @@ function Cafes({ location, setProgress }) {
 										{cafe.address}
 									</p>
 								</div>
-							</div>
+							</motion.div>
 						);
 					})}
 				</div>
