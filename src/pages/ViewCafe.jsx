@@ -163,7 +163,7 @@ function ViewCafe() {
 														<div className='flex flex-col'>
 															<div className='flex xxxsm:flex-col md:flex-row justify-between gap-1'>
 																<Link to={`/users/${rate.userId}`}>
-																	<h1 className='xxxsm:font-bold text-primary text-sm md:text-xl'>
+																	<h1 className='hover:text-brown duration-200 xxxsm:font-bold text-primary text-sm md:text-xl'>
 																		{rate.userName}
 																	</h1>
 																</Link>
