@@ -162,9 +162,11 @@ function ViewCafe() {
 														</Link>
 														<div className='flex flex-col'>
 															<div className='flex xxxsm:flex-col md:flex-row justify-between gap-1'>
-																<h1 className='xxxsm:font-bold text-primary text-sm md:text-xl'>
-																	{rate.userName}
-																</h1>
+																<Link to={`/users/${rate.userId}`}>
+																	<h1 className='xxxsm:font-bold text-primary text-sm md:text-xl'>
+																		{rate.userName}
+																	</h1>
+																</Link>
 																{rate.userId === dev && (
 																	<div className='text-xs text-[#6d6d6d] border border-1 rounded-md py-1 px-3 flex flex-row gap-2 items-center cursor-help mb-2'>
 																		<img

@@ -151,6 +151,7 @@ export const faveCafes = async (req, res) => {
 	}
 };
 
+//unfavorite and favorite cafe
 export const addRemoveFavCafes = async (req, res) => {
 	try {
 		const user = await UserModel.findById(req.body.user_id);
