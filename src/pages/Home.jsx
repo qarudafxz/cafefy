@@ -4,6 +4,7 @@ import Bg from "../assets/bg.svg";
 import { getUserId } from "../helpers/getUserId.js";
 import TopLoadingBar from "react-top-loading-bar";
 import { motion, AnimatePresence } from "framer-motion";
+import { SESSION_TOKEN } from "../helpers/sessionToken.js";
 
 import Navbar from "../components/Navbar";
 import TopCafes from "../components/TopCafes";
@@ -11,11 +12,10 @@ import CafeStories from "../components/CafeStories";
 import NewsLetter from "../components/NewsLetter";
 import Footer from "../components/Footer";
 
-const userID = getUserId();
-
 function Home() {
 	const [progress, setProgress] = useState(0);
 	const location = useLocation();
+	const session_token = SESSION_TOKEN;
 
 	useEffect(() => {
 		setProgress(20);
@@ -23,6 +23,10 @@ function Home() {
 			setProgress(100);
 		});
 	}, [location]);
+
+	useEffect(() => {
+		if (session_token) window.location.href = "/cafes";
+	}, [session_token]);
 
 	return (
 		<div>
