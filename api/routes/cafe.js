@@ -8,6 +8,7 @@ import {
 	faveCafe,
 	faveCafes,
 	addRemoveFavCafes,
+	deleteRate,
 } from "../controllers/cafeSettings.js";
 
 const router = express.Router();
@@ -22,4 +23,5 @@ router.get("/", getAllCafes);
 router.get("/top-cafe", getTopCafe);
 router.get("/cafe/:id", getCafe);
 
+router.delete("/cafe/delete", deleteRate);
 export { router as cafeRouter };

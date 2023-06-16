@@ -52,8 +52,36 @@ function ViewCafe() {
 	};
 
 	const deleteRate = async (rate_id, e) => {
-		e.preventDefault();
-		alert("Hello world", rate_id);
+		try {
+			e.preventDefault();
+			setProgress(30);
+			await fetch(buildUrl("/cafes/cafe/delete"), {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${session_token}`,
+				},
+				body: JSON.stringify({
+					userId: userID,
+					cafeId: cafeID,
+					rateId: rate_id,
+				}),
+			});
+			// Remove the deleted rating from the cafeDeets state
+			setCafeDeets((prevCafeDeets) => {
+				const updatedRaters = prevCafeDeets.raters.filter(
+					(rate) => rate._id !== rate_id
+				);
+				return {
+					...prevCafeDeets,
+					raters: updatedRaters,
+				};
+			});
+			setIsClicked(false);
+			setProgress(100);
+		} catch (err) {
+			console.error(err);
+		}
 	};
 
 	const deleteConfirmationComponent = (rate_id) => {

@@ -131,8 +131,7 @@ export const rateCafe = async (req, res) => {
 		}); // add the new rate and comment to the cafe's ratings array
 		cafe.numberOfRaters += 1; // increment the number of raters for the cafe
 		cafe.averageRate =
-			(cafe.averageRate * cafe.numberOfRaters + rate) /
-			(cafe.numberOfRaters + 1); // calculate the new average rating for the cafe
+			(cafe.averageRate * cafe.numberOfRaters + rate) / (cafe.numberOfRaters + 1); // calculate the new average rating for the cafe
 		await cafe.save(); // save the cafe document to the database
 
 		res.json({ cafe, user }); // return a success response with the updated cafe and user documents
@@ -180,5 +179,45 @@ export const addRemoveFavCafes = async (req, res) => {
 		}
 
 		return res.status(500).json({ message: "Internal server error" }); // return a generic error response for any other errors
+	}
+};
+
+//delete a rate
+export const deleteRate = async (req, res) => {
+	const { userId, cafeId, rateId } = req.body;
+	try {
+		const user = await UserModel.findById(userId);
+		const cafe = await CafeModel.findById(cafeId);
+
+		if (!user) {
+			return res.status(404).json({ message: "User not found" });
+		}
+
+		if (!cafe) {
+			return res.status(404).json({ message: "Cafe not found" });
+		}
+
+		// Remove the rate from the cafe's raters array
+		cafe.raters = cafe.raters.filter((rate) => rate._id.toString() !== rateId);
+		cafe.numberOfRaters -= 1;
+
+		console.log(cafe.raters);
+
+		// Calculate the new average rate for the cafe
+		const totalRateSum = cafe.raters.reduce((sum, rate) => sum + rate.rate, 0);
+		cafe.averageRate = totalRateSum / cafe.numberOfRaters;
+
+		// Remove the rate from the user's rates array
+		user.rates = user.rates.filter((rate) => rate._id.toString() !== rateId);
+		console.log(user.rates);
+		user.numberOfRatings -= 1;
+		user.numberOfReviews -= 1;
+
+		await user.save();
+		await cafe.save();
+
+		return res.status(204).json({ message: "Rating successfully deleted" }).end();
+	} catch (err) {
+		return res.status(500).json({ message: "Internal server error" });
 	}
 };
