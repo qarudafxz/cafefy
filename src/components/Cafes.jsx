@@ -52,9 +52,7 @@ function Cafes({ location, setProgress }) {
 			const favorites = {};
 
 			data.forEach((cafe) => {
-				if (
-					favCafes.findIndex((favCafe) => cafe._id === favCafe.cafeId) !== -1
-				) {
+				if (favCafes.findIndex((favCafe) => cafe._id === favCafe.cafeId) !== -1) {
 					favorites[cafe._id] = true;
 				}
 			});

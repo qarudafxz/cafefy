@@ -43,7 +43,7 @@ function Dashboard() {
 						<h1 className='xxxsm:text-white border border-[#8b2801] mt-10 text-lg px-4 py-2 rounded-lg leading-5 sm:text-2xl'>
 							👋 Welcome back!{" "}
 							<span className='font-bold'>
-								{session_token && username.replace('"', "").replace('"', "")}
+								{session_token && username?.replace('"', "").replace('"', "")}
 							</span>
 						</h1>
 					)}
