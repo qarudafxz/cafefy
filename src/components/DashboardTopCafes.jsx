@@ -17,7 +17,9 @@ function DashboardTopCafes() {
 		try {
 			fetchTopCafes().then((res) => {
 				setTopCafes(res);
-				setIsLoading(false);
+				setTimeout(() => {
+					setIsLoading(false);
+				}, 2000);
 			});
 		} catch (e) {
 			console.log(e);
