@@ -10,7 +10,10 @@
     "server": "nodemon api/devServer.js"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@fvilers/disable-react-devtools": "fvilers/disable-react-devtools",
+    "@mui/material": "^5.13.7",
     "@vercel/analytics": "^1.0.0",
     "axios": "^1.3.5",
     "bcrypt": "^5.1.0",

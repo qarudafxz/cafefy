@@ -109,7 +109,7 @@ const LoggedInNavbar = () => {
 									pathname: `/profile/${userID}`,
 									state: { userID: userID },
 								}}>
-								<h1 className='font-extrabold'>{userDeets.firstName}</h1>
+								<h1 className='font-extrabold'>{userDeets?.firstName}</h1>
 							</Link>
 							<motion.div
 								initial={{ opacity: 0, scale: 0.5 }}
@@ -120,8 +120,8 @@ const LoggedInNavbar = () => {
 									ease: [0, 0.71, 0.2, 1.01],
 								}}>
 								<img
-									src={userDeets.profilePic}
-									alt={userDeets.firstName + " " + userDeets.lastName}
+									src={userDeets?.profilePic}
+									alt={userDeets?.firstName + " " + userDeets?.lastName}
 									className='w-11 rounded-full cursor-pointer'
 									onClick={() => setIsDropDownClicked(!isDropDownClicked)}
 								/>
@@ -183,8 +183,8 @@ const LoggedInNavbar = () => {
 											state: { userID: userID },
 										}}>
 										<img
-											src={userDeets.profilePic}
-											alt={userDeets.firstName + " " + userDeets.lastName}
+											src={userDeets?.profilePic}
+											alt={userDeets?.firstName + " " + userDeets?.lastName}
 											className='xxxsm: w-11 rounded-full'
 										/>
 									</Link>

@@ -8,6 +8,9 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { SESSION_TOKEN } from "../helpers/sessionToken.js";
 import { motion } from "framer-motion";
 
+import { Skeleton } from "@mui/material";
+import { set } from "mongoose";
+
 function Cafes({ location, setProgress }) {
 	const [cafeData, setCafeData] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
@@ -22,8 +25,8 @@ function Cafes({ location, setProgress }) {
 			})
 				.then((response) => response.json())
 				.then((data) => setCafeData(data));
-
 			setIsClicked(favorites);
+			setIsLoading(false);
 			setCafeData(response.json());
 		} catch (err) {
 			console.log(err);
@@ -59,6 +62,7 @@ function Cafes({ location, setProgress }) {
 
 			setIsClicked(favorites);
 			setCafeData(data);
+			setIsLoading(false);
 		} catch (err) {
 			console.log(err);
 		}
@@ -111,72 +115,93 @@ function Cafes({ location, setProgress }) {
 
 	return (
 		<div>
-			{isLoading ? (
-				<GridCardSkeleton />
-			) : (
-				<div
-					className='xxxsm:mx-xxxsm flex flex-col gap-4 mt-48 md:grid grid-cols-4 gap-2 xl:mx-56 gap-8'
-					id='cafes'>
-					{cafeData?.map((cafe) => {
-						return (
-							<motion.div
-								initial={{ opacity: 0, y: 50 }}
-								animate={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.5 }}
-								key={cafe._id}
-								className='xxxsm: flex flex-col gap-4 bg-white rounded-md p-4 md:p-6 hover:bg-[#ebebeb] border border-black hover:scale-105 duration-200'>
-								<Link
-									to={`/cafe/${cafe.name}/${cafe._id}`}
-									state={{ cafeID: cafe._id }}
-									className='w-full rounded-lg group'>
-									<div className='relative group'>
-										<img
-											src={cafe.logo}
-											className='w-full h-full object-cover'
-											alt={cafe.name}
-										/>
-										<div className='absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity'></div>
-										<div className='absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity'>
-											<button className='bg-brown px-4 py-2 rounded-full flex items-center gap-1'>
-												<span className='font-bold text-white'>View Cafe</span>
-												<FiArrowUpRight className='text-white' />
-											</button>
-										</div>
+			<div
+				className='xxxsm:mx-xxxsm flex flex-col gap-4 mt-48 md:grid grid-cols-4 gap-2 xl:mx-56 gap-8'
+				id='cafes'>
+				{cafeData?.map((cafe) => {
+					return isLoading ? (
+						<div className='flex flex-col gap-4'>
+							<Skeleton
+								variant='rectangular'
+								width={"100%"}
+								height={280}
+							/>
+							<Skeleton
+								variant='text'
+								width={"100%"}
+								height={95}
+							/>
+							<div className='flex gap-8'>
+								<Skeleton
+									variant='circular'
+									width={40}
+									height={40}
+								/>
+								<Skeleton
+									variant='text'
+									width={"100%"}
+									height={40}
+								/>
+							</div>
+						</div>
+					) : (
+						<motion.div
+							initial={{ opacity: 0, y: 50 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.5 }}
+							key={cafe._id}
+							className='xxxsm: flex flex-col gap-4 bg-white rounded-md p-4 md:p-6 hover:bg-[#ebebeb] border border-black hover:scale-105 duration-200'>
+							<Link
+								to={`/cafe/${cafe.name}/${cafe._id}`}
+								state={{ cafeID: cafe._id }}
+								className='w-full rounded-lg group'>
+								<div className='relative group'>
+									<img
+										src={cafe.logo}
+										className='w-full h-full object-cover'
+										alt={cafe.name}
+									/>
+									<div className='absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity'></div>
+									<div className='absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity'>
+										<button className='bg-brown px-4 py-2 rounded-full flex items-center gap-1'>
+											<span className='font-bold text-white'>View Cafe</span>
+											<FiArrowUpRight className='text-white' />
+										</button>
 									</div>
-								</Link>
-								<div className='flex flex-col gap-2'>
-									<div className='flex flex-row justify-between items-center'>
-										<Link
-											to={`/cafe/${cafe.name}/${cafe._id}`}
-											state={{ cafeID: cafe._id }}
-											className='text-primary font-bold text-2xl'>
-											{cafe.name}
-										</Link>
-										{session_token && (
-											<LikeComponent
-												id={cafe._id}
-												onClick={() => handleFaveCafe(cafe._id)}
-												className='cursor-pointer'
-												size={24}
-											/>
-										)}
-									</div>
-									<p className='text-black text-xs font-semibold tracking-wide leading-4 text-ellipsis whitespace-nowrap overflow-hidden'>
-										{cafe.desc}
-									</p>
-									<p className='text-black text-xs tracking-wide leading-4 flex gap-3 items-center'>
-										<IoLocationSharp
-											size={20}
-											className='text-md'
-										/>
-										{cafe.address}
-									</p>
 								</div>
-							</motion.div>
-						);
-					})}
-				</div>
-			)}
+							</Link>
+							<div className='flex flex-col gap-2'>
+								<div className='flex flex-row justify-between items-center'>
+									<Link
+										to={`/cafe/${cafe.name}/${cafe._id}`}
+										state={{ cafeID: cafe._id }}
+										className='text-primary font-bold text-2xl'>
+										{cafe.name}
+									</Link>
+									{session_token && (
+										<LikeComponent
+											id={cafe._id}
+											onClick={() => handleFaveCafe(cafe._id)}
+											className='cursor-pointer'
+											size={24}
+										/>
+									)}
+								</div>
+								<p className='text-black text-xs font-semibold tracking-wide leading-4 text-ellipsis whitespace-nowrap overflow-hidden'>
+									{cafe.desc}
+								</p>
+								<p className='text-black text-xs tracking-wide leading-4 flex gap-3 items-center'>
+									<IoLocationSharp
+										size={20}
+										className='text-md'
+									/>
+									{cafe.address}
+								</p>
+							</div>
+						</motion.div>
+					);
+				})}
+			</div>
 		</div>
 	);
 }
