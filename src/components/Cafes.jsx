@@ -26,10 +26,10 @@ function Cafes({ location, setProgress }) {
 				.then((response) => response.json())
 				.then((data) => setCafeData(data));
 			setIsClicked(favorites);
+			setCafeData(response.json());
 			setTimeout(() => {
 				setIsLoading(false);
 			}, 2000);
-			setCafeData(response.json());
 		} catch (err) {
 			console.log(err);
 		}
