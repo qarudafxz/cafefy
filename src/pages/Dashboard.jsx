@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Illus from "../assets/illus.svg";
 import { BiMouse } from "react-icons/bi";
@@ -18,6 +18,10 @@ function Dashboard() {
 
 	const location = useLocation();
 	const username = localStorage.getItem("user");
+
+	useEffect(() => {
+		document.title = "Find Cafes | Cafefy";
+	}, []);
 
 	return (
 		<div>

@@ -51,6 +51,10 @@ function Profile() {
 		getUserDetails();
 	}, []);
 
+	useEffect(() => {
+		document.title = `${userDeets.firstName + " " + userDeets.lastName} | Cafefy`;
+	}, [userDeets]);
+
 	return (
 		<div>
 			<ToastContainer

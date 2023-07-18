@@ -28,6 +28,10 @@ function Home() {
 		if (session_token) window.location.href = "/cafes";
 	}, [session_token]);
 
+	useEffect(() => {
+		document.title = "Home | Cafefy";
+	}, []);
+
 	return (
 		<div>
 			<div className=''>

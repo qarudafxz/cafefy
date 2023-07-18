@@ -37,9 +37,7 @@ function FavoriteCafe() {
 			const favorites = {};
 
 			data.forEach((cafe) => {
-				if (
-					favCafes.findIndex((favCafe) => cafe._id === favCafe.cafeId) !== -1
-				) {
+				if (favCafes.findIndex((favCafe) => cafe._id === favCafe.cafeId) !== -1) {
 					favorites[cafe._id] = true;
 				}
 			});
@@ -89,7 +87,7 @@ function FavoriteCafe() {
 
 	useEffect(() => {
 		if (!session_token) window.location.href = "/auth/login";
-
+		document.title = "Favorite Cafes | Cafefy";
 		fetchData();
 	}, []);
 
@@ -141,9 +139,7 @@ function FavoriteCafe() {
 											<div className='absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity'></div>
 											<div className='absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity'>
 												<button className='bg-brown px-4 py-2 rounded-full flex items-center gap-1'>
-													<span className='font-bold text-white'>
-														View Cafe
-													</span>
+													<span className='font-bold text-white'>View Cafe</span>
 													<FiArrowUpRight className='text-white' />
 												</button>
 											</div>

@@ -147,6 +147,8 @@ function ViewCafe() {
 		setDisableBtn(
 			userID && cafeDeets.raters?.find((rate) => rate.userId === userID)
 		);
+
+		document.title = `${cafeDeets.name} | Cafefy`;
 	}, [cafeDeets]);
 
 	return (
