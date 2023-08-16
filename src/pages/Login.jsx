@@ -76,37 +76,6 @@ const Login = () => {
 
 	useEffect(() => {
 		document.title = "Login | Cafefy";
-
-		if (window.google) {
-			google.accounts.id.initialize({
-				client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-				callback: googleSignUp,
-			});
-
-			google.accounts.id.renderButton(document.getElementById("google-button"), {
-				theme: "outline",
-				size: "large",
-				text: "continue_with",
-				shape: "rectangular",
-				width: `${
-					window.innerWidth >= 275 && window.innerWidth <= 375
-						? 245
-						: window.innerWidth > 375 && window.innerWidth <= 425
-						? 250
-						: window.innerWidth > 425 && window.innerWidth <= 1024
-						? 295
-						: window.innerWidth > 1024 && window.innerWidth <= 1440
-						? 350
-						: window.innerWidth > 1440 && window.innerWidth <= 2560
-						? 400
-						: 450
-				}`,
-				height: "50",
-				longtitle: "true",
-				onsuccess: googleSignUp,
-				onfailure: googleSignUp,
-			});
-		}
 	}, []);
 
 	return (
@@ -149,14 +118,14 @@ const Login = () => {
 							)}
 						</button>
 						<div className='flex flex-row items-center place-content-center my-8'>
-							<hr className='w-5/12 border-[#505050] ' />
-							<p className='px-10 text-[#505050] text-sm'>OR</p>
-							<hr className='w-5/12 border-[#505050] ' />
+							{/* <hr className='w-5/12 border-[#505050] ' /> */}
+							{/* Removed Google Auth */}
+							{/* <p className='px-10 text-[#505050] text-sm'>OR</p>
+							<hr className='w-5/12 border-[#505050] ' /> */}
 						</div>
-						<button id='google-button'></button>
 						<button
 							type='submit'
-							className='w-full bg-brown py-2 px-4 rounded-lg mt-10 font-extrabold text-white hover:bg-[#552b1a] duration-200 sm:text-xl mt-20 xxl:mt-32'>
+							className='w-full bg-brown py-2 px-4 rounded-lg font-extrabold text-white hover:bg-[#552b1a] duration-200 sm:text-xl'>
 							Login
 						</button>
 						<p className='font-primary text-xs text-white mt-4 text-center sm:text-base'>
